@@ -6,13 +6,13 @@ public enum TipoProduto {
     FUNDO("Fundo"),
     FUNDO_MULTIMERCADO("Fundo Multimercado");
 
-    private final String descricao;
+    private final String nome;
 
-    TipoProduto(String descricao) {
-        this.descricao = descricao;
+    TipoProduto(String nome) {
+        this.nome = nome;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getNome() {
+        return nome;
     }
 }

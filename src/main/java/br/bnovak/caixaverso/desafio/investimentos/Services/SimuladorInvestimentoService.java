@@ -1,9 +1,6 @@
 package br.bnovak.caixaverso.desafio.investimentos.Services;
 
-import br.bnovak.caixaverso.desafio.investimentos.Dto.ProdutoResponse;
-import br.bnovak.caixaverso.desafio.investimentos.Dto.ResultadoSimulacaoResponse;
-import br.bnovak.caixaverso.desafio.investimentos.Dto.SimularInvestimentoRequest;
-import br.bnovak.caixaverso.desafio.investimentos.Dto.SimularInvestimentoResponse;
+import br.bnovak.caixaverso.desafio.investimentos.Dto.*;
 import br.bnovak.caixaverso.desafio.investimentos.Enum.Risco;
 import br.bnovak.caixaverso.desafio.investimentos.Exceptions.NaoEncontradoException;
 import br.bnovak.caixaverso.desafio.investimentos.Utils.Financeiro;
@@ -18,10 +15,15 @@ public class SimuladorInvestimentoService {
     @Inject
     ProdutoService produtoService;
 
+    @Inject
+    ClienteService clienteService;
+
     public SimularInvestimentoResponse simularInvestimento(SimularInvestimentoRequest request) throws NaoEncontradoException {
         //buscar Cliente para obter o perfil de risco do cliente
-        //Após implentação mudar parametro do risco abaixo q no momento ta fixo
-        ProdutoResponse produtoValidado = produtoService.buscarProdutoAdequado(request.getTipoProduto(), Risco.BAIXO);
+        ClienteResponse cliente = clienteService.buscarPorID(request.getClienteId());
+        System.out.println(cliente.getPerfil());
+        Risco perfil = Risco.buscarPorNome(cliente.getPerfil());
+        ProdutoResponse produtoValidado = produtoService.buscarProdutoAdequado(request.getTipoProduto(), perfil);
 
         ResultadoSimulacaoResponse simulacao = simularResultadoInvestimento(request, produtoValidado);
 

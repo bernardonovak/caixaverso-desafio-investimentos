@@ -1,6 +1,5 @@
 package br.bnovak.caixaverso.desafio.investimentos.Entities;
 
-
 import br.bnovak.caixaverso.desafio.investimentos.Enum.Risco;
 import br.bnovak.caixaverso.desafio.investimentos.Enum.TipoProduto;
 import jakarta.persistence.*;

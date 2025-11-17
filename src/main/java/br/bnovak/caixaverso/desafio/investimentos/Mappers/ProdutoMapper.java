@@ -18,11 +18,11 @@ public interface ProdutoMapper {
     List<ProdutoResponse> toListDTO(List<Produto> produtos);
 
     default String map(TipoProduto tipoProduto) {
-        return tipoProduto != null ? tipoProduto.getDescricao() : null;
+        return tipoProduto != null ? tipoProduto.getNome() : null;
     }
 
     default String map(Risco risco) {
-        return risco != null ? risco.getDescricao() : null;
+        return risco != null ? risco.getNome() : null;
     }
 
 }

@@ -19,12 +19,12 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 public interface ProdutoAPI {
 
     @Operation(description = "Retorna todos os produtos para invetimento", operationId = "ProdutosAPI#buscarTodos", summary = "Retorna todos os produtos para invetimento")
-    @APIResponse(name = "OK", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoResponse.class, type = SchemaType.OBJECT)), description = "Consulta de produtos para empréstimo realizada com sucesso")
+    @APIResponse(name = "OK", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoResponse.class, type = SchemaType.OBJECT)), description = "Consulta de produtos para investimento realizado com sucesso")
     @GET
     public Response buscarTodos();
 
     @Operation(description = "Recupera um produto para investimento por ID", operationId = "ProdutosAPI#buscarUm", summary = "Recupera um produto para investimento por ID")
-    @APIResponse(name = "OK", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoResponse.class, type = SchemaType.OBJECT)), description = "Consulta de produto para empréstimo realizado com sucesso")
+    @APIResponse(name = "OK", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoResponse.class, type = SchemaType.OBJECT)), description = "Consulta de produto para investimento realizado com sucesso")
     @APIResponse(responseCode = "404", ref = "notFound")
     @APIResponse(responseCode = "500", ref = "internalError")
     @GET

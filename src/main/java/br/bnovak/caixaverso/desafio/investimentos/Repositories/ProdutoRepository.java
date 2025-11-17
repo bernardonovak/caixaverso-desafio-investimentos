@@ -11,7 +11,7 @@ import java.util.Optional;
 @ApplicationScoped
 public class ProdutoRepository implements PanacheRepository<Produto> {
 
-    public Optional<Produto> buscarPorTipoERisco(Enum<TipoProduto> tipo, Enum<Risco> risco) {
+    public Optional<Produto> buscarPorTipoERisco(TipoProduto tipo, Risco risco) {
         return find("tipoProduto = ?1 and risco = ?2", tipo, risco).singleResultOptional();
     }
 }
