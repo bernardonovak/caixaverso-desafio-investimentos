@@ -1,6 +1,6 @@
 package br.bnovak.caixaverso.desafio.investimentos.Resources;
 
-import br.bnovak.caixaverso.desafio.investimentos.Services.SimuladorInvestimentoService;
+import br.bnovak.caixaverso.desafio.investimentos.Services.SimulacaoService;
 import br.bnovak.caixaverso.desafio.investimentos.Dto.SimularInvestimentoRequest;
 import br.bnovak.caixaverso.desafio.investimentos.Exceptions.NaoEncontradoException;
 import br.bnovak.caixaverso.desafio.investimentos.Resources.Interfaces.SimuladorInvestimentoAPI;
@@ -11,7 +11,7 @@ import jakarta.ws.rs.core.UriInfo;
 public class SimuladorInvestimentoResource implements SimuladorInvestimentoAPI {
 
     @Inject
-    SimuladorInvestimentoService service;
+    SimulacaoService service;
 
     @Override
     public Response simularInvestimento(SimularInvestimentoRequest request, UriInfo uriInfo) throws NaoEncontradoException {

@@ -5,6 +5,7 @@ import br.bnovak.caixaverso.desafio.investimentos.Enum.TipoProduto;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "PRODUTO")
@@ -26,7 +27,14 @@ public class Produto {
     @Column(name = "RISCO")
     private Risco risco;
 
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
+    private List<Simulacao> simulacoes;
+
     public Produto() {
+    }
+
+    public Produto(Integer id) {
+        this.id = id;
     }
 
     public Produto(String nome, TipoProduto tipoProduto, BigDecimal rentabilidade, Risco risco) {
@@ -42,6 +50,15 @@ public class Produto {
         this.tipoProduto = tipoProduto;
         this.rentabilidade = rentabilidade;
         this.risco = risco;
+    }
+
+    public Produto(Integer id, String nome, TipoProduto tipoProduto, BigDecimal rentabilidade, Risco risco, List<Simulacao> simulacoes) {
+        this.id = id;
+        this.nome = nome;
+        this.tipoProduto = tipoProduto;
+        this.rentabilidade = rentabilidade;
+        this.risco = risco;
+        this.simulacoes = simulacoes;
     }
 
     public Integer getId() {
@@ -82,5 +99,13 @@ public class Produto {
 
     public void setRisco(Risco risco) {
         this.risco = risco;
+    }
+
+    public List<Simulacao> getSimulacoes() {
+        return simulacoes;
+    }
+
+    public void setSimulacoes(List<Simulacao> simulacoes) {
+        this.simulacoes = simulacoes;
     }
 }

@@ -12,17 +12,21 @@ import java.util.List;
 @Mapper(componentModel = "jakarta")
 public interface ClienteMapper {
 
+    @Mapping(source = "perfil", target = "perfil", qualifiedByName = "mapNome")
+    @Mapping(source = "perfil", target = "descricao", qualifiedByName = "mapDescricao")
     ClienteResponse toDTO(Cliente cliente);
 
     List<ClienteResponse> toListDTO(List<Cliente> clientes);
 
-//    @Named("mapNome")
-//    default String mapNome(Risco perfil) {
-//        return perfil != null ? perfil.getNome() : null;
-//    }
-//
-//    @Named("mapDescricao")
-//    default String mapDescricao(Risco perfil) {
-//        return perfil != null ? perfil.getDescricao() : null;
-//    }
+    @Named("mapNome")
+    default String mapNome(Risco perfil) {
+        return perfil != null ? perfil.getNome() : null;
+    }
+
+    @Named("mapDescricao")
+    default String mapDescricao(Risco perfil) {
+        return perfil != null ? perfil.getDescricao() : null;
+    }
+
+
 }

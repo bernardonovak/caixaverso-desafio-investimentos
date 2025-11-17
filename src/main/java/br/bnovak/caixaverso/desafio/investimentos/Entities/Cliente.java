@@ -3,6 +3,8 @@ package br.bnovak.caixaverso.desafio.investimentos.Entities;
 import br.bnovak.caixaverso.desafio.investimentos.Enum.Risco;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "CLIENTE")
 public class Cliente {
@@ -18,7 +20,14 @@ public class Cliente {
     @Column(name = "PONTUACAO", nullable = false)
     private Integer pontuacao;
 
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    private List<Simulacao> simulacoes;
+
     public Cliente() {
+    }
+
+    public Cliente(Integer id) {
+        this.id = id;
     }
 
     public Cliente(Risco perfil, Integer pontuacao) {
@@ -30,6 +39,13 @@ public class Cliente {
         this.id = id;
         this.perfil = perfil;
         this.pontuacao = pontuacao;
+    }
+
+    public Cliente(Integer id, Risco perfil, Integer pontuacao, List<Simulacao> simulacoes) {
+        this.id = id;
+        this.perfil = perfil;
+        this.pontuacao = pontuacao;
+        this.simulacoes = simulacoes;
     }
 
     public Integer getId() {

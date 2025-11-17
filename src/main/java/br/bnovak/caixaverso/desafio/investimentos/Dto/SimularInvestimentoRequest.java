@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 public class SimularInvestimentoRequest {
 
     @Schema(
-            description = "ID do produto",
+            description = "ID do cliente",
             implementation = Integer.class,
             type = SchemaType.INTEGER
     )

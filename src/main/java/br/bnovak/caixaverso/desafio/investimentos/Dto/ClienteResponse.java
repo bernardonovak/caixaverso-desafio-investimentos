@@ -31,12 +31,12 @@ public class ClienteResponse {
     )
     private Integer pontuacao;
 
-//    @Schema(
-//            description = "Descrição do Perfil",
-//            implementation = String.class,
-//            type = SchemaType.STRING
-//    )
-//    private String descricao;
+    @Schema(
+            description = "Descrição do Perfil",
+            implementation = String.class,
+            type = SchemaType.STRING
+    )
+    private String descricao;
 
     public Integer getId() {
         return id;
@@ -62,11 +62,11 @@ public class ClienteResponse {
         this.pontuacao = pontuacao;
     }
 
-//    public String getDescricao() {
-//        return descricao;
-//    }
-//
-//    public void setDescricao(String descricao) {
-//        this.descricao = descricao;
-//    }
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 }
