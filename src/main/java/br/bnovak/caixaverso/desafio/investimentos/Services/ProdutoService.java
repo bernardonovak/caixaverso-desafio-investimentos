@@ -42,10 +42,21 @@ public class ProdutoService {
     public List<ProdutoResponse> buscarProdutosRecomendados(String strPerfil) throws NaoEncontradoException{
         //Procura perfil pelo nome
         PerfilRisco perfilRisco = PerfilRisco.buscarPorPerfil(strPerfil);
-
-        //SimulacaoResponse simulacoes = simulacaoService.buscarTodos().stream().filter(simulacao -> simulacao.getProduto().equalsIgnoreCase(perfilRisco.getRisco()));
-        //lista produtos por perfil
-        return null;
+        switch (perfilRisco){
+            case PerfilRisco.BAIXO -> {
+                //buscar por Liquidez Alta e baixa movimentação
+                return null;
+            }
+            case PerfilRisco.MODERADO -> {
+                //buscar equilibrio entre liquidez e rentabilidade
+                return null;
+            }
+            case PerfilRisco.ALTO -> {
+                return mapper.toListDTO(produtoRepository.buscarPorRiscoOrdenadoPorRenatabilidade(PerfilRisco.ALTO));
+            }
+            default -> new IllegalArgumentException("Erro ao encontrar Risco.");
+        }
+        throw new IllegalArgumentException("Erro ao encontrar Risco.");
     }
 
     private Produto obterProdutoPorID(Integer idProduto) throws NaoEncontradoException{
