@@ -1,11 +1,13 @@
 package br.bnovak.caixaverso.desafio.investimentos.Bootstrap;
 
 import br.bnovak.caixaverso.desafio.investimentos.Entities.Cliente;
+import br.bnovak.caixaverso.desafio.investimentos.Entities.Investimento;
 import br.bnovak.caixaverso.desafio.investimentos.Entities.Produto;
 import br.bnovak.caixaverso.desafio.investimentos.Entities.Simulacao;
 import br.bnovak.caixaverso.desafio.investimentos.Enum.PerfilRisco;
 import br.bnovak.caixaverso.desafio.investimentos.Enum.TipoProduto;
 import br.bnovak.caixaverso.desafio.investimentos.Repositories.ClienteRepository;
+import br.bnovak.caixaverso.desafio.investimentos.Repositories.InvestimentoRepository;
 import br.bnovak.caixaverso.desafio.investimentos.Repositories.ProdutoRepository;
 import br.bnovak.caixaverso.desafio.investimentos.Repositories.SimulacaoRepository;
 import io.quarkus.runtime.Startup;
@@ -31,6 +33,9 @@ public class CargaInicial {
     @Inject
     SimulacaoRepository simulacaoRepository;
 
+    @Inject
+    InvestimentoRepository investimentoRepository;
+
     @ConfigProperty(name = "app.carregar-dados", defaultValue = "false")
     boolean carregarDados;
 
@@ -40,6 +45,7 @@ public class CargaInicial {
             carregarDadosProduto();
             carregarDadosCliente();
             carregarSimulacoes();
+            carregarInvestimentos();
         }
     }
 
@@ -108,6 +114,20 @@ public class CargaInicial {
             simulacaoRepository.persist(s13);
             simulacaoRepository.persist(s14);
             simulacaoRepository.persist(s15);
+        }
+    }
+
+    @Transactional
+    public void carregarInvestimentos(){
+        if(investimentoRepository.count() == 0){
+            Investimento i1 = new Investimento(new Cliente(1), new Produto(1), new BigDecimal(10000), new BigDecimal(10100), 12, Instant.parse("2025-10-30T19:41:40.806260100Z"));
+
+            Investimento i2 = new Investimento(new Cliente(3), new Produto(2), new BigDecimal(10000), new BigDecimal(10250), 36, Instant.parse("2025-11-05T19:45:40.806260100Z"));
+            Investimento i3 = new Investimento(new Cliente(3), new Produto(3), new BigDecimal(20000), new BigDecimal(20880), 12, Instant.parse("2025-10-30T19:41:40.806260100Z"));
+
+            investimentoRepository.persist(i1);
+            investimentoRepository.persist(i2);
+            investimentoRepository.persist(i3);
         }
     }
 }
