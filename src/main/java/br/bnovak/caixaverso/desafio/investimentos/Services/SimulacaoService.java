@@ -14,7 +14,12 @@ import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @ApplicationScoped
 public class SimulacaoService {
@@ -32,16 +37,13 @@ public class SimulacaoService {
     SimulacaoMapper mapper;
 
     public SimularInvestimentoResponse simularInvestimento(SimularInvestimentoRequest request) throws NaoEncontradoException {
-        //buscar Cliente para obter o perfil de risco do cliente
         ClienteResponse cliente = clienteService.buscarPorID(request.getClienteId());
         Risco perfil = Risco.buscarPorNome(cliente.getPerfil());
         ProdutoResponse produtoValidado = produtoService.buscarProdutoAdequado(request.getTipoProduto(), perfil);
-
         ResultadoSimulacaoResponse simulacao = simularResultadoInvestimento(request, produtoValidado);
 
         SimularInvestimentoResponse simulacaoResponse = new SimularInvestimentoResponse(produtoValidado, simulacao);
 
-        //criar metodo privado para gravar na tabela de simulacoes realizadas
         gravarSimulacao(request, simulacaoResponse);
         return simulacaoResponse;
     }
@@ -68,5 +70,35 @@ public class SimulacaoService {
     public List<SimulacaoResponse> buscarTodos(){
         List<Simulacao> simulacoes = repository.findAll().list();
         return mapper.toListDTO(simulacoes);
+    }
+
+    public List<SimulacaoPorProdutoDiaDTO> buscarPorProdutoEDia(){
+        DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE;
+        List<SimulacaoResponse> simulacoes = buscarTodos();
+
+        return simulacoes.stream()
+                .collect(Collectors.groupingBy(simulacao -> {
+                    String produto = simulacao.getProduto();
+                    LocalDate data = simulacao.getDataSimulacao()
+                            .atZone(ZoneId.systemDefault())
+                            .toLocalDate();
+                    return produto + "|" + data.format(formatter);
+                }))
+                .entrySet()
+                .stream()
+                .map(
+                        resumo -> {
+                            String[] chave = resumo.getKey().split("\\|");
+                            String produto = chave[0];
+                            LocalDate data = LocalDate.parse(chave[1]);
+                            List<SimulacaoResponse> grupo = resumo.getValue();
+                            Integer quantidade = grupo.size();
+                            BigDecimal media = grupo.stream()
+                                    .map(SimulacaoResponse::getValorFinal)
+                                    .reduce(BigDecimal.ZERO, BigDecimal::add)
+                                    .divide(BigDecimal.valueOf(quantidade), 2, RoundingMode.HALF_UP);
+                            return new SimulacaoPorProdutoDiaDTO(produto, data.toString(), quantidade, media);
+                        }
+                ).toList();
     }
 }

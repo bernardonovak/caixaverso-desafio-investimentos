@@ -14,4 +14,11 @@ public class SimulacoesResource implements SimulacoesAPI {
     public Response buscarTodos() {
         return ApiResponse.ok(service.buscarTodos());
     }
+
+    @Override
+    public Response buscarPorProdutoEDia() {
+        return ApiResponse.ok(service.buscarPorProdutoEDia());
+    }
+
+
 }

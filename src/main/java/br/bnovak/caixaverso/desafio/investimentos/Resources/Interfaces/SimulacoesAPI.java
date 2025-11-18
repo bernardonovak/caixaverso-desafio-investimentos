@@ -1,6 +1,6 @@
 package br.bnovak.caixaverso.desafio.investimentos.Resources.Interfaces;
 
-import br.bnovak.caixaverso.desafio.investimentos.Dto.ProdutoResponse;
+import br.bnovak.caixaverso.desafio.investimentos.Dto.SimulacaoResponse;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -21,7 +21,14 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 public interface SimulacoesAPI {
 
     @Operation(description = "Retorna todas as simulações realizadas.", operationId = "simulacoesAPI#buscarTodos", summary = "Retorna todas as simulações realizadas.")
-    @APIResponse(name = "OK", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoResponse.class, type = SchemaType.OBJECT)), description = "Consulta de produtos para investimento realizado com sucesso")
+    @APIResponse(name = "OK", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = SimulacaoResponse.class, type = SchemaType.OBJECT)), description = "Consulta de produtos para investimento realizado com sucesso")
     @GET
     public Response buscarTodos();
+
+    @Operation(description = "Retorna qunatidade de simulações realizadas por produto e dia", operationId = "simulacoesAPI#buscarPorProdutoEDia", summary = "Retorna qunatidade de simulações realizadas por produto e dia")
+    @APIResponse(name = "OK", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = SimulacaoResponse.class, type = SchemaType.OBJECT)), description = "Consulta de produtos para investimento realizado com sucesso")
+    @GET
+    @Path("/por-produto-dia")
+    public Response buscarPorProdutoEDia();
+
 }
