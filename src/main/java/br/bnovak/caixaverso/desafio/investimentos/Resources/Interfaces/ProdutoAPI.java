@@ -21,7 +21,7 @@ public interface ProdutoAPI {
     @Operation(description = "Retorna todos os produtos para invetimento", operationId = "ProdutosAPI#buscarTodos", summary = "Retorna todos os produtos para invetimento")
     @APIResponse(name = "OK", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoResponse.class, type = SchemaType.OBJECT)), description = "Consulta de produtos para investimento realizado com sucesso")
     @GET
-    public Response buscarTodos();
+    Response buscarTodos();
 
     @Operation(description = "Recupera um produto para investimento por ID", operationId = "ProdutosAPI#buscarUm", summary = "Recupera um produto para investimento por ID")
     @APIResponse(name = "OK", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ProdutoResponse.class, type = SchemaType.OBJECT)), description = "Consulta de produto para investimento realizado com sucesso")
@@ -29,5 +29,5 @@ public interface ProdutoAPI {
     @APIResponse(responseCode = "500", ref = "internalError")
     @GET
     @Path("{ID}")
-    public Response buscarUm(@PathParam("ID") final Integer idProduto) throws NaoEncontradoException;
+    Response buscarUm(@PathParam("ID") final Integer idProduto) throws NaoEncontradoException;
 }

@@ -4,7 +4,7 @@ import br.bnovak.caixaverso.desafio.investimentos.Dto.*;
 import br.bnovak.caixaverso.desafio.investimentos.Entities.Cliente;
 import br.bnovak.caixaverso.desafio.investimentos.Entities.Produto;
 import br.bnovak.caixaverso.desafio.investimentos.Entities.Simulacao;
-import br.bnovak.caixaverso.desafio.investimentos.Enum.Risco;
+import br.bnovak.caixaverso.desafio.investimentos.Enum.PerfilRisco;
 import br.bnovak.caixaverso.desafio.investimentos.Exceptions.NaoEncontradoException;
 import br.bnovak.caixaverso.desafio.investimentos.Mappers.SimulacaoMapper;
 import br.bnovak.caixaverso.desafio.investimentos.Repositories.SimulacaoRepository;
@@ -38,7 +38,7 @@ public class SimulacaoService {
 
     public SimularInvestimentoResponse simularInvestimento(SimularInvestimentoRequest request) throws NaoEncontradoException {
         ClienteResponse cliente = clienteService.buscarPorID(request.getClienteId());
-        Risco perfil = Risco.buscarPorNome(cliente.getPerfil());
+        PerfilRisco perfil = PerfilRisco.buscarPorPerfil(cliente.getPerfil());
         ProdutoResponse produtoValidado = produtoService.buscarProdutoAdequado(request.getTipoProduto(), perfil);
         ResultadoSimulacaoResponse simulacao = simularResultadoInvestimento(request, produtoValidado);
 

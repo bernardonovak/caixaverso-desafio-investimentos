@@ -1,7 +1,5 @@
 package br.bnovak.caixaverso.desafio.investimentos.Dto;
 
-import br.bnovak.caixaverso.desafio.investimentos.Enum.Risco;
-import br.bnovak.caixaverso.desafio.investimentos.Enum.TipoProduto;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 

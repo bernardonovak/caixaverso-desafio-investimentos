@@ -3,7 +3,7 @@ package br.bnovak.caixaverso.desafio.investimentos.Services;
 import br.bnovak.caixaverso.desafio.investimentos.Mappers.ProdutoMapper;
 import br.bnovak.caixaverso.desafio.investimentos.Dto.ProdutoResponse;
 import br.bnovak.caixaverso.desafio.investimentos.Entities.Produto;
-import br.bnovak.caixaverso.desafio.investimentos.Enum.Risco;
+import br.bnovak.caixaverso.desafio.investimentos.Enum.PerfilRisco;
 import br.bnovak.caixaverso.desafio.investimentos.Enum.TipoProduto;
 import br.bnovak.caixaverso.desafio.investimentos.Exceptions.NaoEncontradoException;
 import br.bnovak.caixaverso.desafio.investimentos.Repositories.ProdutoRepository;
@@ -18,6 +18,9 @@ public class ProdutoService {
     @Inject
     ProdutoRepository produtoRepository;
 
+//    @Inject
+//    SimulacaoService simulacaoService;
+
     @Inject
     ProdutoMapper mapper;
 
@@ -31,17 +34,26 @@ public class ProdutoService {
         return mapper.toDTO(produto);
     }
 
-    public ProdutoResponse buscarProdutoAdequado(TipoProduto tipoProduto, Risco risco) throws NaoEncontradoException{
-        Produto produto = obterProdutoValidado(tipoProduto, risco);
+    public ProdutoResponse buscarProdutoAdequado(TipoProduto tipoProduto, PerfilRisco perfilRisco) throws NaoEncontradoException{
+        Produto produto = obterProdutoValidado(tipoProduto, perfilRisco);
         return mapper.toDTO(produto);
+    }
+
+    public List<ProdutoResponse> buscarProdutosRecomendados(String strPerfil) throws NaoEncontradoException{
+        //Procura perfil pelo nome
+        PerfilRisco perfilRisco = PerfilRisco.buscarPorPerfil(strPerfil);
+
+        //SimulacaoResponse simulacoes = simulacaoService.buscarTodos().stream().filter(simulacao -> simulacao.getProduto().equalsIgnoreCase(perfilRisco.getRisco()));
+        //lista produtos por perfil
+        return null;
     }
 
     private Produto obterProdutoPorID(Integer idProduto) throws NaoEncontradoException{
         return produtoRepository.findByIdOptional(Long.valueOf(idProduto)).orElseThrow(()-> new NaoEncontradoException("Produto não encontrado"));
     }
 
-    private Produto obterProdutoValidado(TipoProduto tipoProduto, Risco risco) throws NaoEncontradoException{
-        return produtoRepository.buscarPorTipoERisco(tipoProduto, risco).orElseThrow(()-> new NaoEncontradoException("Não foi possível encontrar um produto adequado de acordo com o perfil de risco do CLiente e tipo de investimento informado."));
+    private Produto obterProdutoValidado(TipoProduto tipoProduto, PerfilRisco perfilRisco) throws NaoEncontradoException{
+        return produtoRepository.buscarPorTipoERisco(tipoProduto, perfilRisco).orElseThrow(()-> new NaoEncontradoException("Não foi possível encontrar um produto adequado de acordo com o perfil de risco do CLiente e tipo de investimento informado."));
     }
 
 }

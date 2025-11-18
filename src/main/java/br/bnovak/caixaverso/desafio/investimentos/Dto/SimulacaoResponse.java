@@ -64,16 +64,6 @@ public class SimulacaoResponse {
     public SimulacaoResponse() {
     }
 
-    public SimulacaoResponse(Integer id, Integer clienteId, String produto, BigDecimal valorInvestido, BigDecimal valorFinal, Integer prazoMeses, Instant dataSimulacao) {
-        this.id = id;
-        this.clienteId = clienteId;
-        this.produto = produto;
-        this.valorInvestido = valorInvestido;
-        this.valorFinal = valorFinal;
-        this.prazoMeses = prazoMeses;
-        this.dataSimulacao = dataSimulacao;
-    }
-
     public Integer getId() {
         return id;
     }

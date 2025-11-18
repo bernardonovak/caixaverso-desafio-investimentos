@@ -4,7 +4,6 @@ import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import java.math.BigDecimal;
-import java.time.Instant;
 
 @Schema(
         description = "Objeto de Resposta da quantidade de Simulações realizadas por produto e dia",

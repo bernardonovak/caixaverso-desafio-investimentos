@@ -2,7 +2,7 @@ package br.bnovak.caixaverso.desafio.investimentos.Mappers;
 
 import br.bnovak.caixaverso.desafio.investimentos.Dto.ProdutoResponse;
 import br.bnovak.caixaverso.desafio.investimentos.Entities.Produto;
-import br.bnovak.caixaverso.desafio.investimentos.Enum.Risco;
+import br.bnovak.caixaverso.desafio.investimentos.Enum.PerfilRisco;
 import br.bnovak.caixaverso.desafio.investimentos.Enum.TipoProduto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -21,8 +21,8 @@ public interface ProdutoMapper {
         return tipoProduto != null ? tipoProduto.getNome() : null;
     }
 
-    default String map(Risco risco) {
-        return risco != null ? risco.getNome() : null;
+    default String map(PerfilRisco perfilRisco) {
+        return perfilRisco != null ? perfilRisco.getRisco() : null;
     }
 
 }

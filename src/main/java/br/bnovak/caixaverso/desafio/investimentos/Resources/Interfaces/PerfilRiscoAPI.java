@@ -24,10 +24,10 @@ public interface PerfilRiscoAPI {
     @APIResponse(responseCode = "500", ref = "internalError")
     @GET
     @Path("{clienteId}")
-    public Response buscarPerfilCliente(@PathParam("clienteId") final Integer clienteId) throws NaoEncontradoException;
+    Response buscarPerfilCliente(@PathParam("clienteId") final Integer clienteId) throws NaoEncontradoException;
 
     @Operation(description = "Retorna todos os clientes com perfis de Risco", operationId = "PerfilRiscoAPI#buscarTodos", summary = "Retorna todos os clientes com perfis de Risco")
     @APIResponse(name = "OK", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ClienteResponse.class, type = SchemaType.OBJECT)), description = "Consulta de clientes realizada com sucesso")
     @GET
-    public Response buscarTodos();
+    Response buscarTodos();
 }

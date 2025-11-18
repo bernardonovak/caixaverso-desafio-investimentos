@@ -25,6 +25,6 @@ public interface SimuladorInvestimentoAPI {
     @APIResponse(name = "OK", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = SimularInvestimentoResponse.class, type = SchemaType.OBJECT)), description = "Simulação realizada com sucesso.")
     @APIResponse(responseCode = "404", ref = "notFound")
     @POST
-    public Response simularInvestimento(final SimularInvestimentoRequest request, @Context UriInfo uriInfo) throws NaoEncontradoException;
+    Response simularInvestimento(final SimularInvestimentoRequest request, @Context UriInfo uriInfo) throws NaoEncontradoException;
 
 }

@@ -1,6 +1,6 @@
 package br.bnovak.caixaverso.desafio.investimentos.Entities;
 
-import br.bnovak.caixaverso.desafio.investimentos.Enum.Risco;
+import br.bnovak.caixaverso.desafio.investimentos.Enum.PerfilRisco;
 import br.bnovak.caixaverso.desafio.investimentos.Enum.TipoProduto;
 import jakarta.persistence.*;
 
@@ -25,7 +25,7 @@ public class Produto {
     private BigDecimal rentabilidade;
 
     @Column(name = "RISCO")
-    private Risco risco;
+    private PerfilRisco perfilRisco;
 
     @OneToMany(mappedBy = "produto", cascade = CascadeType.ALL)
     private List<Simulacao> simulacoes;
@@ -37,27 +37,27 @@ public class Produto {
         this.id = id;
     }
 
-    public Produto(String nome, TipoProduto tipoProduto, BigDecimal rentabilidade, Risco risco) {
+    public Produto(String nome, TipoProduto tipoProduto, BigDecimal rentabilidade, PerfilRisco perfilRisco) {
         this.nome = nome;
         this.tipoProduto = tipoProduto;
         this.rentabilidade = rentabilidade;
-        this.risco = risco;
+        this.perfilRisco = perfilRisco;
     }
 
-    public Produto(Integer id, String nome, TipoProduto tipoProduto, BigDecimal rentabilidade, Risco risco) {
+    public Produto(Integer id, String nome, TipoProduto tipoProduto, BigDecimal rentabilidade, PerfilRisco perfilRisco) {
         this.id = id;
         this.nome = nome;
         this.tipoProduto = tipoProduto;
         this.rentabilidade = rentabilidade;
-        this.risco = risco;
+        this.perfilRisco = perfilRisco;
     }
 
-    public Produto(Integer id, String nome, TipoProduto tipoProduto, BigDecimal rentabilidade, Risco risco, List<Simulacao> simulacoes) {
+    public Produto(Integer id, String nome, TipoProduto tipoProduto, BigDecimal rentabilidade, PerfilRisco perfilRisco, List<Simulacao> simulacoes) {
         this.id = id;
         this.nome = nome;
         this.tipoProduto = tipoProduto;
         this.rentabilidade = rentabilidade;
-        this.risco = risco;
+        this.perfilRisco = perfilRisco;
         this.simulacoes = simulacoes;
     }
 
@@ -93,12 +93,12 @@ public class Produto {
         this.rentabilidade = rentabilidade;
     }
 
-    public Risco getRisco() {
-        return risco;
+    public PerfilRisco getRisco() {
+        return perfilRisco;
     }
 
-    public void setRisco(Risco risco) {
-        this.risco = risco;
+    public void setRisco(PerfilRisco perfilRisco) {
+        this.perfilRisco = perfilRisco;
     }
 
     public List<Simulacao> getSimulacoes() {

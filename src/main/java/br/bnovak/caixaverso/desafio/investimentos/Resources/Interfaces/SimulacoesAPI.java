@@ -23,12 +23,12 @@ public interface SimulacoesAPI {
     @Operation(description = "Retorna todas as simulações realizadas.", operationId = "simulacoesAPI#buscarTodos", summary = "Retorna todas as simulações realizadas.")
     @APIResponse(name = "OK", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = SimulacaoResponse.class, type = SchemaType.OBJECT)), description = "Consulta de produtos para investimento realizado com sucesso")
     @GET
-    public Response buscarTodos();
+    Response buscarTodos();
 
     @Operation(description = "Retorna qunatidade de simulações realizadas por produto e dia", operationId = "simulacoesAPI#buscarPorProdutoEDia", summary = "Retorna qunatidade de simulações realizadas por produto e dia")
     @APIResponse(name = "OK", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = SimulacaoResponse.class, type = SchemaType.OBJECT)), description = "Consulta de produtos para investimento realizado com sucesso")
     @GET
     @Path("/por-produto-dia")
-    public Response buscarPorProdutoEDia();
+    Response buscarPorProdutoEDia();
 
 }
