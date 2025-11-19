@@ -1,13 +1,49 @@
 package br.bnovak.caixaverso.desafio.investimentos.Dto;
 
-import java.math.BigDecimal;
+import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
+import java.math.BigDecimal;
+import java.time.Instant;
+
+@Schema(
+        description = "Objeto de Resposta da API de investimentos",
+        name = "investimentosResponse",
+        type = SchemaType.OBJECT
+)
 public class InvestimentoResponse {
 
+    @Schema(
+            description = "ID do investimento",
+            implementation = Integer.class,
+            type = SchemaType.INTEGER
+    )
     private Integer id;
+
+    @Schema(
+            description = "Tipo do Investimento",
+            implementation = String.class,
+            type = SchemaType.STRING
+    )
     private String tipo;
+
+    @Schema(
+            description = "Valor atual do investimento",
+            implementation = BigDecimal.class
+    )
     private BigDecimal valor;
+
+    @Schema(
+            description = "Renatabilidade efetiva",
+            implementation = BigDecimal.class
+    )
     private BigDecimal rentabilidade;
+
+    @Schema(
+            description = "Data e hora do investimento",
+            implementation = Instant.class,
+            type = SchemaType.STRING
+    )
     private String data;
 
     public InvestimentoResponse() {
