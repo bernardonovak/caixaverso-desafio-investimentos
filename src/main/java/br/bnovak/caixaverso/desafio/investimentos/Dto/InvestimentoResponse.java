@@ -5,6 +5,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDate;
 
 @Schema(
         description = "Objeto de Resposta da API de investimentos",
@@ -44,12 +45,12 @@ public class InvestimentoResponse {
             implementation = Instant.class,
             type = SchemaType.STRING
     )
-    private String data;
+    private LocalDate data;
 
     public InvestimentoResponse() {
     }
 
-    public InvestimentoResponse(Integer id, String tipo, BigDecimal valor, BigDecimal rentabilidade, String data) {
+    public InvestimentoResponse(Integer id, String tipo, BigDecimal valor, BigDecimal rentabilidade, LocalDate data) {
         this.id = id;
         this.tipo = tipo;
         this.valor = valor;
@@ -89,11 +90,11 @@ public class InvestimentoResponse {
         this.rentabilidade = rentabilidade;
     }
 
-    public String getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 }

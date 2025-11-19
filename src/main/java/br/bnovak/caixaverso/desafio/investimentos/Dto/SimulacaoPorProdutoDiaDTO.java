@@ -4,6 +4,7 @@ import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Schema(
         description = "Objeto de Resposta da quantidade de Simulações realizadas por produto e dia",
@@ -21,10 +22,10 @@ public class SimulacaoPorProdutoDiaDTO {
 
     @Schema(
             description = "Data da simulação de investimento",
-            implementation = String.class,
+            implementation = LocalDate.class,
             type = SchemaType.STRING
     )
-    private String data;
+    private LocalDate data;
 
     @Schema(
             description = "Quantidade de simulações do Produto por dia",
@@ -39,7 +40,7 @@ public class SimulacaoPorProdutoDiaDTO {
     )
     private BigDecimal mediaValorFinal;
 
-    public SimulacaoPorProdutoDiaDTO(String produto, String data, Integer quantidadeSimulacoes, BigDecimal mediaValorFinal) {
+    public SimulacaoPorProdutoDiaDTO(String produto, LocalDate data, Integer quantidadeSimulacoes, BigDecimal mediaValorFinal) {
         this.produto = produto;
         this.data = data;
         this.quantidadeSimulacoes = quantidadeSimulacoes;
@@ -54,11 +55,11 @@ public class SimulacaoPorProdutoDiaDTO {
         this.produto = produto;
     }
 
-    public String getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 

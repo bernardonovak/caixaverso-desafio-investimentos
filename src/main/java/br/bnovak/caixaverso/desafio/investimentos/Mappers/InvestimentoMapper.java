@@ -11,6 +11,7 @@ import org.mapstruct.Named;
 
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -37,7 +38,7 @@ public interface InvestimentoMapper {
     }
 
     @Named("mapData")
-    default String mapData(Instant dataInvestimento) {
+    default LocalDate mapData(Instant dataInvestimento) {
         return dataInvestimento != null ? Utils.ConverteInstantParaData(dataInvestimento) : null;
     }
 }

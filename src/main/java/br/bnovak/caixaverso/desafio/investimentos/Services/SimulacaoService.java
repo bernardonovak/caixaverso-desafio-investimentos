@@ -97,7 +97,7 @@ public class SimulacaoService {
                                     .map(SimulacaoResponse::getValorFinal)
                                     .reduce(BigDecimal.ZERO, BigDecimal::add)
                                     .divide(BigDecimal.valueOf(quantidade), 2, RoundingMode.HALF_UP);
-                            return new SimulacaoPorProdutoDiaDTO(produto, data.toString(), quantidade, media);
+                            return new SimulacaoPorProdutoDiaDTO(produto, data, quantidade, media);
                         }
                 ).toList();
     }
