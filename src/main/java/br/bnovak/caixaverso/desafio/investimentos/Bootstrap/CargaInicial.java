@@ -43,7 +43,7 @@ public class CargaInicial {
     @PostConstruct
     public void init(){
         if(carregarDados){
-            carregarDadosProduto();
+            carregarProdutos();
             carregarDadosCliente();
             carregarSimulacoes();
             carregarInvestimentos();
@@ -51,17 +51,21 @@ public class CargaInicial {
     }
 
     @Transactional
-    public void carregarDadosProduto(){
+    public void carregarProdutos(){
         if(produtoRepository.count() == 0){
-            Produto p1 = new Produto("CDB Caixa 2026", TipoProduto.CDB, new BigDecimal("0.12"), Risco.BAIXO);
+            Produto p1 = new Produto("CDB Caixa 2027", TipoProduto.CDB, new BigDecimal("0.12"), Risco.BAIXO);
             Produto p2 = new Produto("CDB Moderado 2026", TipoProduto.CDB, new BigDecimal("0.14"), Risco.MODERADO);
-            Produto p3 = new Produto("Fundo XPTO", TipoProduto.FUNDO, new BigDecimal("0.18"), Risco.ALTO);
-            Produto p4 = new Produto("Fundo Moderado", TipoProduto.FUNDO, new BigDecimal("0.18"), Risco.MODERADO);
+            Produto p3 = new Produto("CDB Moderado 2027", TipoProduto.CDB, new BigDecimal("0.15"), Risco.MODERADO);
+            Produto p4 = new Produto("Fundo Moderado", TipoProduto.FUNDO, new BigDecimal("0.15"), Risco.MODERADO);
+            Produto p5 = new Produto("Fundo XPTO", TipoProduto.FUNDO, new BigDecimal("0.18"), Risco.ALTO);
+            Produto p6 = new Produto("Fundo XPTO 2", TipoProduto.FUNDO, new BigDecimal("0.20"), Risco.ALTO);
 
             produtoRepository.persist(p1);
             produtoRepository.persist(p2);
             produtoRepository.persist(p3);
             produtoRepository.persist(p4);
+            produtoRepository.persist(p5);
+            produtoRepository.persist(p6);
         }
     }
 

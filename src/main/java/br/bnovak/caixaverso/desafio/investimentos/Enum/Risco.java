@@ -18,7 +18,7 @@ public enum Risco {
         return risco;
     }
 
-    public static Risco buscarPorRisco(String risco) {
+    public static Risco buscarPorNome(String risco) {
         return Arrays.stream(Risco.values())
                 .filter(r -> r.getRisco().equalsIgnoreCase(risco))
                 .findFirst()

@@ -11,6 +11,7 @@ import br.bnovak.caixaverso.desafio.investimentos.Repositories.ProdutoRepository
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
+import java.util.Comparator;
 import java.util.List;
 
 @ApplicationScoped
@@ -55,26 +56,50 @@ public class ProdutoService {
         return mapper.toDTO(produto);
     }
 
-
-    public List<ProdutoResponse> buscarProdutosRecomendados(String strPerfil) throws NaoEncontradoException{
+    public List<ProdutoResponse> recomendarProdutos(String strPerfil) throws NaoEncontradoException{
         //Procura perfil pelo nome
         Perfil perfil = Perfil.buscarPorPerfil(strPerfil);
+        List<ProdutoResponse> produtos = buscarTodos();
+
+        Comparator<ProdutoResponse> porRentabilidadeDesc = Comparator.comparing(ProdutoResponse::getRentabilidade).reversed();
         switch (perfil){
             case Perfil.CONSERVADOR -> {
                 //buscar por Liquidez Alta e baixa movimentação
-                return null;
+                return recomendarProdutosPerfilConservador(produtos, porRentabilidadeDesc);
             }
             case Perfil.MODERADO -> {
                 //buscar equilibrio entre liquidez e rentabilidade
-                return null;
+                return recomendarProdutosPerfilModerado(produtos, porRentabilidadeDesc);
             }
             case Perfil.AGRESSIVO -> {
                 //busca por alta rentabilidade, maior risco
-                return mapper.toListDTO(produtoRepository.buscarPorRiscoOrdenadoPorRenatabilidade(Risco.ALTO));
+                return recomendarProdutosPerfilAgressivo(produtos, porRentabilidadeDesc);
             }
-            default -> new IllegalArgumentException("Erro ao encontrar Risco.");
+            default -> throw new NaoEncontradoException("Erro ao encontrar Risco.");
         }
-        throw new IllegalArgumentException("Erro ao encontrar Risco.");
+    }
+
+    private List<ProdutoResponse> recomendarProdutosPerfilConservador(List<ProdutoResponse> produtos, Comparator<ProdutoResponse> ordem){
+        return produtos.stream()
+                .filter(p -> p.getRentabilidade().compareTo(Perfil.CONSERVADOR.getParametroRentabilidade()) <= 0)
+                .filter(p -> Risco.buscarPorNome(p.getRisco()) == Risco.BAIXO)
+                .sorted(ordem)
+                .toList();
+    }
+
+    private List<ProdutoResponse> recomendarProdutosPerfilModerado(List<ProdutoResponse> produtos, Comparator<ProdutoResponse> ordem){
+        return produtos.stream()
+                .filter(p -> p.getRentabilidade().compareTo(Perfil.MODERADO.getParametroRentabilidade()) <= 0)
+                .filter(p -> Risco.buscarPorNome(p.getRisco()) != Risco.ALTO)
+                .sorted(ordem)
+                .toList();
+    }
+
+    private List<ProdutoResponse> recomendarProdutosPerfilAgressivo(List<ProdutoResponse> produtos, Comparator<ProdutoResponse> ordem){
+        return produtos.stream()
+                .filter(p -> p.getRentabilidade().compareTo(Perfil.AGRESSIVO.getParametroRentabilidade()) >= 0)
+                .sorted(ordem)
+                .toList();
     }
 
     private Produto obterProdutoPorID(Integer idProduto) throws NaoEncontradoException{

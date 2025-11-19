@@ -15,6 +15,6 @@ public class ProdutosRecomendadosResource implements ProdutosRecomendadosAPI {
 
     @Override
     public Response buscarUm(String perfil) throws NaoEncontradoException {
-        return ApiResponse.ok(service.buscarProdutosRecomendados(perfil));
+        return ApiResponse.ok(service.recomendarProdutos(perfil));
     }
 }
