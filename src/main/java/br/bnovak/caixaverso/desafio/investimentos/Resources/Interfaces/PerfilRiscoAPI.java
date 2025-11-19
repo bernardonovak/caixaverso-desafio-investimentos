@@ -2,6 +2,7 @@ package br.bnovak.caixaverso.desafio.investimentos.Resources.Interfaces;
 
 import br.bnovak.caixaverso.desafio.investimentos.Dto.ClienteResponse;
 import br.bnovak.caixaverso.desafio.investimentos.Exceptions.NaoEncontradoException;
+import io.quarkus.security.Authenticated;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -12,6 +13,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
+@Authenticated
 @Path("/perfil-risco")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)

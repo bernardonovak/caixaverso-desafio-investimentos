@@ -62,7 +62,4 @@ public class TelemetriaFilter implements ContainerRequestFilter, ContainerRespon
                 .takeWhile(nome -> !nome.matches("\\d+") && !nome.matches("[0-9a-fA-F\\-]{36}"))
                 .collect(Collectors.joining("/"));
     }
-
-
-
 }

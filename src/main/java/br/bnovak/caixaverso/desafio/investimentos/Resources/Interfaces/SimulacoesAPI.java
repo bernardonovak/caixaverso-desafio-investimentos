@@ -1,6 +1,7 @@
 package br.bnovak.caixaverso.desafio.investimentos.Resources.Interfaces;
 
 import br.bnovak.caixaverso.desafio.investimentos.Dto.SimulacaoResponse;
+import io.quarkus.security.Authenticated;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -14,6 +15,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
+@Authenticated
 @Path("/simulacoes")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)

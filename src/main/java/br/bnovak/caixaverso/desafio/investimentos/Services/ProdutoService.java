@@ -52,6 +52,7 @@ public class ProdutoService {
                 return null;
             }
             case PerfilRisco.ALTO -> {
+                //busca por alta rentabilidade, maior risco
                 return mapper.toListDTO(produtoRepository.buscarPorRiscoOrdenadoPorRenatabilidade(PerfilRisco.ALTO));
             }
             default -> new IllegalArgumentException("Erro ao encontrar Risco.");

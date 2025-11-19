@@ -2,9 +2,11 @@ package br.bnovak.caixaverso.desafio.investimentos.Resources;
 
 import br.bnovak.caixaverso.desafio.investimentos.Resources.Interfaces.SimulacoesAPI;
 import br.bnovak.caixaverso.desafio.investimentos.Services.SimulacaoService;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.core.Response;
 
+@ApplicationScoped
 public class SimulacoesResource implements SimulacoesAPI {
 
     @Inject

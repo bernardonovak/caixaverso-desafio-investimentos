@@ -3,6 +3,7 @@ package br.bnovak.caixaverso.desafio.investimentos.Resources.Interfaces;
 import br.bnovak.caixaverso.desafio.investimentos.Dto.SimularInvestimentoRequest;
 import br.bnovak.caixaverso.desafio.investimentos.Dto.SimularInvestimentoResponse;
 import br.bnovak.caixaverso.desafio.investimentos.Exceptions.NaoEncontradoException;
+import io.quarkus.security.Authenticated;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
@@ -15,6 +16,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
+@Authenticated
 @Path("/simular-investimento")
 @Consumes(MediaType.APPLICATION_JSON)
 @Produces(MediaType.APPLICATION_JSON)
