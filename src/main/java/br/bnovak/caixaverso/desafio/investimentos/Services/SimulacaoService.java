@@ -40,9 +40,8 @@ public class SimulacaoService {
     public SimularInvestimentoResponse simularInvestimento(SimularInvestimentoRequest request) throws NaoEncontradoException {
         ClienteResponse cliente = clienteService.buscarPorID(request.getClienteId());
         Perfil perfil = Perfil.buscarPorPerfil(cliente.getPerfil());
-//        busca produto com maior rentabilidade de acordo com o perfil calcularRiscoPorPerfil();
+//        busca produto com maior rentabilidade de acordo com o risco (Atualmente perfil = 1 risco)
         Risco risco = produtoService.calcularRiscoPorPerfil(perfil);
-
         ProdutoResponse produtoValidado = produtoService.buscarProdutoAdequado(request.getTipoProduto(), risco);
         ResultadoSimulacaoResponse simulacao = simularResultadoInvestimento(request, produtoValidado);
 
