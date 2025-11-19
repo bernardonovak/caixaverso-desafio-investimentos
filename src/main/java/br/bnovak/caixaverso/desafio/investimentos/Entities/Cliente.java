@@ -1,6 +1,7 @@
 package br.bnovak.caixaverso.desafio.investimentos.Entities;
 
-import br.bnovak.caixaverso.desafio.investimentos.Enum.PerfilRisco;
+import br.bnovak.caixaverso.desafio.investimentos.Enum.Perfil;
+import br.bnovak.caixaverso.desafio.investimentos.Enum.Risco;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,7 +16,7 @@ public class Cliente {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "PERFIL", nullable = false)
-    private PerfilRisco perfil;
+    private Perfil perfil;
 
     @Column(name = "PONTUACAO", nullable = false)
     private Integer pontuacao;
@@ -30,18 +31,18 @@ public class Cliente {
         this.id = id;
     }
 
-    public Cliente(PerfilRisco perfil, Integer pontuacao) {
+    public Cliente(Perfil perfil, Integer pontuacao) {
         this.perfil = perfil;
         this.pontuacao = pontuacao;
     }
 
-    public Cliente(Integer id, PerfilRisco perfil, Integer pontuacao) {
+    public Cliente(Integer id, Perfil perfil, Integer pontuacao) {
         this.id = id;
         this.perfil = perfil;
         this.pontuacao = pontuacao;
     }
 
-    public Cliente(Integer id, PerfilRisco perfil, Integer pontuacao, List<Simulacao> simulacoes) {
+    public Cliente(Integer id, Perfil perfil, Integer pontuacao, List<Simulacao> simulacoes) {
         this.id = id;
         this.perfil = perfil;
         this.pontuacao = pontuacao;
@@ -56,11 +57,11 @@ public class Cliente {
         this.id = id;
     }
 
-    public PerfilRisco getPerfil() {
+    public Perfil getPerfil() {
         return perfil;
     }
 
-    public void setPerfil(PerfilRisco perfil) {
+    public void setPerfil(Perfil perfil) {
         this.perfil = perfil;
     }
 

@@ -1,9 +1,10 @@
 package br.bnovak.caixaverso.desafio.investimentos.Services;
 
+import br.bnovak.caixaverso.desafio.investimentos.Enum.Perfil;
 import br.bnovak.caixaverso.desafio.investimentos.Mappers.ProdutoMapper;
 import br.bnovak.caixaverso.desafio.investimentos.Dto.ProdutoResponse;
 import br.bnovak.caixaverso.desafio.investimentos.Entities.Produto;
-import br.bnovak.caixaverso.desafio.investimentos.Enum.PerfilRisco;
+import br.bnovak.caixaverso.desafio.investimentos.Enum.Risco;
 import br.bnovak.caixaverso.desafio.investimentos.Enum.TipoProduto;
 import br.bnovak.caixaverso.desafio.investimentos.Exceptions.NaoEncontradoException;
 import br.bnovak.caixaverso.desafio.investimentos.Repositories.ProdutoRepository;
@@ -34,26 +35,42 @@ public class ProdutoService {
         return mapper.toDTO(produto);
     }
 
-    public ProdutoResponse buscarProdutoAdequado(TipoProduto tipoProduto, PerfilRisco perfilRisco) throws NaoEncontradoException{
-        Produto produto = obterProdutoValidado(tipoProduto, perfilRisco);
+    public Risco calcularRiscoPorPerfil(Perfil perfil) throws NaoEncontradoException {
+        switch (perfil){
+            case Perfil.CONSERVADOR -> {
+                return Risco.BAIXO;
+            }
+            case Perfil.MODERADO -> {
+                return Risco.MODERADO;
+            }
+            case Perfil.AGRESSIVO -> {
+                return Risco.ALTO;
+            }
+        }
+        throw new NaoEncontradoException("Perfil Inválido!");
+    }
+
+    public ProdutoResponse buscarProdutoAdequado(TipoProduto tipoProduto, Risco risco) throws NaoEncontradoException{
+        Produto produto = obterProdutoValidado(tipoProduto, risco);
         return mapper.toDTO(produto);
     }
 
+
     public List<ProdutoResponse> buscarProdutosRecomendados(String strPerfil) throws NaoEncontradoException{
         //Procura perfil pelo nome
-        PerfilRisco perfilRisco = PerfilRisco.buscarPorPerfil(strPerfil);
-        switch (perfilRisco){
-            case PerfilRisco.BAIXO -> {
+        Perfil perfil = Perfil.buscarPorPerfil(strPerfil);
+        switch (perfil){
+            case Perfil.CONSERVADOR -> {
                 //buscar por Liquidez Alta e baixa movimentação
                 return null;
             }
-            case PerfilRisco.MODERADO -> {
+            case Perfil.MODERADO -> {
                 //buscar equilibrio entre liquidez e rentabilidade
                 return null;
             }
-            case PerfilRisco.ALTO -> {
+            case Perfil.AGRESSIVO -> {
                 //busca por alta rentabilidade, maior risco
-                return mapper.toListDTO(produtoRepository.buscarPorRiscoOrdenadoPorRenatabilidade(PerfilRisco.ALTO));
+                return mapper.toListDTO(produtoRepository.buscarPorRiscoOrdenadoPorRenatabilidade(Risco.ALTO));
             }
             default -> new IllegalArgumentException("Erro ao encontrar Risco.");
         }
@@ -64,8 +81,9 @@ public class ProdutoService {
         return produtoRepository.findByIdOptional(Long.valueOf(idProduto)).orElseThrow(()-> new NaoEncontradoException("Produto não encontrado"));
     }
 
-    private Produto obterProdutoValidado(TipoProduto tipoProduto, PerfilRisco perfilRisco) throws NaoEncontradoException{
-        return produtoRepository.buscarPorTipoERisco(tipoProduto, perfilRisco).orElseThrow(()-> new NaoEncontradoException("Não foi possível encontrar um produto adequado de acordo com o perfil de risco do CLiente e tipo de investimento informado."));
+    private Produto obterProdutoValidado(TipoProduto tipoProduto, Risco risco) throws NaoEncontradoException{
+        return produtoRepository.buscarPorTipoERisco(tipoProduto, risco).orElseThrow(()-> new NaoEncontradoException("Não foi possível encontrar um produto disponível de acordo com o perfil do CLiente e tipo de investimento informado."));
     }
+
 
 }

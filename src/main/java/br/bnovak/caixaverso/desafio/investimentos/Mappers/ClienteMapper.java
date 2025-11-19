@@ -2,7 +2,7 @@ package br.bnovak.caixaverso.desafio.investimentos.Mappers;
 
 import br.bnovak.caixaverso.desafio.investimentos.Dto.ClienteResponse;
 import br.bnovak.caixaverso.desafio.investimentos.Entities.Cliente;
-import br.bnovak.caixaverso.desafio.investimentos.Enum.PerfilRisco;
+import br.bnovak.caixaverso.desafio.investimentos.Enum.Perfil;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -19,12 +19,12 @@ public interface ClienteMapper {
     List<ClienteResponse> toListDTO(List<Cliente> clientes);
 
     @Named("mapPerfil")
-    default String mapPerfil(PerfilRisco perfil) {
+    default String mapPerfil(Perfil perfil) {
         return perfil != null ? perfil.getPerfil() : null;
     }
 
     @Named("mapDescricao")
-    default String mapDescricao(PerfilRisco perfil) {
+    default String mapDescricao(Perfil perfil) {
         return perfil != null ? perfil.getDescricao() : null;
     }
 

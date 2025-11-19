@@ -4,7 +4,8 @@ import br.bnovak.caixaverso.desafio.investimentos.Entities.Cliente;
 import br.bnovak.caixaverso.desafio.investimentos.Entities.Investimento;
 import br.bnovak.caixaverso.desafio.investimentos.Entities.Produto;
 import br.bnovak.caixaverso.desafio.investimentos.Entities.Simulacao;
-import br.bnovak.caixaverso.desafio.investimentos.Enum.PerfilRisco;
+import br.bnovak.caixaverso.desafio.investimentos.Enum.Perfil;
+import br.bnovak.caixaverso.desafio.investimentos.Enum.Risco;
 import br.bnovak.caixaverso.desafio.investimentos.Enum.TipoProduto;
 import br.bnovak.caixaverso.desafio.investimentos.Repositories.ClienteRepository;
 import br.bnovak.caixaverso.desafio.investimentos.Repositories.InvestimentoRepository;
@@ -52,10 +53,10 @@ public class CargaInicial {
     @Transactional
     public void carregarDadosProduto(){
         if(produtoRepository.count() == 0){
-            Produto p1 = new Produto("CDB Caixa 2026", TipoProduto.CDB, new BigDecimal("0.12"), PerfilRisco.BAIXO);
-            Produto p2 = new Produto("CDB Moderado 2026", TipoProduto.CDB, new BigDecimal("0.14"), PerfilRisco.MODERADO);
-            Produto p3 = new Produto("Fundo XPTO", TipoProduto.FUNDO, new BigDecimal("0.18"), PerfilRisco.ALTO);
-            Produto p4 = new Produto("Fundo Moderado", TipoProduto.FUNDO, new BigDecimal("0.18"), PerfilRisco.MODERADO);
+            Produto p1 = new Produto("CDB Caixa 2026", TipoProduto.CDB, new BigDecimal("0.12"), Risco.BAIXO);
+            Produto p2 = new Produto("CDB Moderado 2026", TipoProduto.CDB, new BigDecimal("0.14"), Risco.MODERADO);
+            Produto p3 = new Produto("Fundo XPTO", TipoProduto.FUNDO, new BigDecimal("0.18"), Risco.ALTO);
+            Produto p4 = new Produto("Fundo Moderado", TipoProduto.FUNDO, new BigDecimal("0.18"), Risco.MODERADO);
 
             produtoRepository.persist(p1);
             produtoRepository.persist(p2);
@@ -67,9 +68,9 @@ public class CargaInicial {
     @Transactional
     public void carregarDadosCliente(){
         if(clienteRepository.count() == 0){
-            Cliente c1 = new Cliente(PerfilRisco.BAIXO, 10);
-            Cliente c2 = new Cliente(PerfilRisco.MODERADO, 65);
-            Cliente c3 = new Cliente(PerfilRisco.ALTO, 90);
+            Cliente c1 = new Cliente(Perfil.CONSERVADOR, 10);
+            Cliente c2 = new Cliente(Perfil.MODERADO, 65);
+            Cliente c3 = new Cliente(Perfil.AGRESSIVO, 90);
 
             clienteRepository.persist(c1);
             clienteRepository.persist(c2);
