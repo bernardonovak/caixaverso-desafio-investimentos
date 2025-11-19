@@ -57,7 +57,11 @@ public class TelemetriaFilter implements ContainerRequestFilter, ContainerRespon
         if (path.startsWith("/")) {
             path = path.substring(1);
         }
-
+        String[] partes = path.split("/");
+        // Regra especial: se começa com "produtos-recomendados", retorna só ele ignorando argumentos
+        if (partes.length > 0 && partes[0].equalsIgnoreCase("produtos-recomendados")) {
+            return "produtos-recomendados";
+        }
         return Arrays.stream(path.split("/"))
                 .takeWhile(nome -> !nome.matches("\\d+") && !nome.matches("[0-9a-fA-F\\-]{36}"))
                 .collect(Collectors.joining("/"));
