@@ -14,6 +14,7 @@
     <quarkus.platform.version>3.29.3</quarkus.platform.version>
     <skipITs>true</skipITs>
     <surefire-plugin.version>3.5.4</surefire-plugin.version>
+      <findsecbugs.version>1.13.0</findsecbugs.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -177,6 +178,32 @@
           </systemPropertyVariables>
         </configuration>
       </plugin>
+        <!-- Segurança: SpotBugs + FindSecBugs -->
+        <plugin>
+            <groupId>com.github.spotbugs</groupId>
+            <artifactId>spotbugs-maven-plugin</artifactId>
+            <version>4.8.6.5</version>
+            <dependencies>
+                <dependency>
+                    <groupId>com.h3xstream.findsecbugs</groupId>
+                    <artifactId>findsecbugs-plugin</artifactId>
+                    <version>${findsecbugs.version}</version>
+                </dependency>
+            </dependencies>
+            <executions>
+                <execution>
+                    <phase>verify</phase>
+                    <goals>
+                        <goal>check</goal>
+                    </goals>
+                    <configuration>
+                        <effort>Max</effort>
+                        <threshold>Low</threshold>
+                        <failOnError>true</failOnError>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
     </plugins>
   </build>
   <profiles>

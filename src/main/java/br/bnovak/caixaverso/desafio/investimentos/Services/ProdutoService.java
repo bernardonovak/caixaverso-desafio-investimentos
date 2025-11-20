@@ -111,8 +111,10 @@ public class ProdutoService {
     }
 
     private Produto obterProdutoValidado(TipoProduto tipoProduto, Risco risco) throws NaoEncontradoException{
-        return produtoRepository.buscarPorTipoERisco(tipoProduto, risco).orElseThrow(()-> new NaoEncontradoException("Não foi possível encontrar um produto disponível de acordo com o perfil do CLiente e tipo de investimento informado."));
+        List<Produto> produtos = produtoRepository.buscarPorTipoERisco(tipoProduto, risco);
+        return produtos.stream()
+                .max(Comparator.comparing(Produto::getRentabilidade))
+                .orElseThrow(() -> new NaoEncontradoException("Não foi possível encontrar um produto disponível de acordo com o perfil do CLiente e tipo de investimento informado."));
     }
-
 
 }

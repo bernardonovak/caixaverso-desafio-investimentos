@@ -128,7 +128,7 @@ public class ProdutoServiceTest {
         TipoProduto tipo = TipoProduto.FUNDO;
         Risco risco = Risco.MEDIO;
         Produto produto = getMockProdutoRiscoMedioValido();
-        Mockito.when(repository.buscarPorTipoERisco(tipo, risco)).thenReturn(Optional.of(produto));
+        Mockito.when(repository.buscarPorTipoERisco(tipo, risco)).thenReturn(List.of(produto));
 
         ProdutoResponse resultado = service.buscarProdutoAdequado(tipo, risco);
 
@@ -146,7 +146,9 @@ public class ProdutoServiceTest {
         TipoProduto tipo = TipoProduto.CDB;
         Risco risco = Risco.ALTO;
 
-        Mockito.when(repository.buscarPorTipoERisco(tipo, risco)).thenReturn(Optional.empty());
+        List<Produto> produtos = List.of();
+
+        Mockito.when(repository.buscarPorTipoERisco(tipo, risco)).thenReturn(produtos);
 
         NaoEncontradoException ex = Assertions.assertThrows(NaoEncontradoException.class, () -> {
             service.buscarProdutoAdequado(tipo, risco);
