@@ -5,6 +5,7 @@ import br.bnovak.caixaverso.desafio.investimentos.Dto.SimulacaoPorProdutoDiaDTO;
 import br.bnovak.caixaverso.desafio.investimentos.Dto.SimulacaoResponse;
 import br.bnovak.caixaverso.desafio.investimentos.Entities.Cliente;
 import br.bnovak.caixaverso.desafio.investimentos.Entities.Investimento;
+import br.bnovak.caixaverso.desafio.investimentos.Exceptions.NaoEncontradoException;
 import br.bnovak.caixaverso.desafio.investimentos.Mappers.InvestimentoMapper;
 import br.bnovak.caixaverso.desafio.investimentos.Repositories.InvestimentoRepository;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -22,11 +23,11 @@ public class InvestimentoService {
     @Inject
     InvestimentoMapper mapper;
 
-    @Inject
-    ClienteService serviceCliente;
-
-    public List<InvestimentoResponse> buscarInvestimentosCliente(Integer clienteId){
+    public List<InvestimentoResponse> buscarInvestimentosCliente(Integer clienteId) throws NaoEncontradoException{
         List<Investimento> investimentos = repository.buscarPorCliente(new Cliente(clienteId));
+        if(investimentos.isEmpty()){
+            throw new NaoEncontradoException("Nenhum investimento encontrado para o cliente.");
+        }
         return mapper.toListDTO(investimentos);
     }
 }

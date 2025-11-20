@@ -18,6 +18,8 @@ public interface ClienteMapper {
 
     List<ClienteResponse> toListDTO(List<Cliente> clientes);
 
+    Cliente toEntity(ClienteResponse cliente);
+
     @Named("mapPerfil")
     default String mapPerfil(Perfil perfil) {
         return perfil != null ? perfil.getPerfil() : null;
