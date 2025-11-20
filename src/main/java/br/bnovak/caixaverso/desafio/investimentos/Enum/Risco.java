@@ -5,22 +5,22 @@ import java.util.Arrays;
 public enum Risco {
 
     BAIXO("Baixo"),
-    MODERADO("Médio"),
+    MEDIO("Médio"),
     ALTO("Alto");
 
-    private final String risco;
+    private final String nome;
 
-    Risco(String risco) {
-        this.risco = risco;
+    Risco(String nome) {
+        this.nome = nome;
     }
 
-    public String getRisco() {
-        return risco;
+    public String getNome() {
+        return nome;
     }
 
-    public static Risco buscarPorNome(String risco) {
+    public static Risco buscarPorNome(String nome) {
         return Arrays.stream(Risco.values())
-                .filter(r -> r.getRisco().equalsIgnoreCase(risco))
+                .filter(r -> r.getNome().equalsIgnoreCase(nome))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("Risco inválido!"));
     }

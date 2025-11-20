@@ -54,9 +54,9 @@ public class CargaInicial {
     public void carregarProdutos(){
         if(produtoRepository.count() == 0){
             Produto p1 = new Produto("CDB Caixa 2027", TipoProduto.CDB, new BigDecimal("0.12"), Risco.BAIXO);
-            Produto p2 = new Produto("CDB Moderado 2026", TipoProduto.CDB, new BigDecimal("0.14"), Risco.MODERADO);
-            Produto p3 = new Produto("CDB Moderado 2027", TipoProduto.CDB, new BigDecimal("0.15"), Risco.MODERADO);
-            Produto p4 = new Produto("Fundo Moderado", TipoProduto.FUNDO, new BigDecimal("0.15"), Risco.MODERADO);
+            Produto p2 = new Produto("CDB Moderado 2026", TipoProduto.CDB, new BigDecimal("0.14"), Risco.MEDIO);
+            Produto p3 = new Produto("CDB Moderado 2027", TipoProduto.CDB, new BigDecimal("0.15"), Risco.MEDIO);
+            Produto p4 = new Produto("Fundo Moderado", TipoProduto.FUNDO, new BigDecimal("0.15"), Risco.MEDIO);
             Produto p5 = new Produto("Fundo XPTO", TipoProduto.FUNDO, new BigDecimal("0.18"), Risco.ALTO);
             Produto p6 = new Produto("Fundo XPTO 2", TipoProduto.FUNDO, new BigDecimal("0.20"), Risco.ALTO);
 

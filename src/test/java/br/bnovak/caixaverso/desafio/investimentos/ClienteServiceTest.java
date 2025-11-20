@@ -9,9 +9,6 @@ import br.bnovak.caixaverso.desafio.investimentos.Mappers.ClienteMapperImpl;
 import br.bnovak.caixaverso.desafio.investimentos.Repositories.ClienteRepository;
 import br.bnovak.caixaverso.desafio.investimentos.Services.ClienteService;
 import io.quarkus.hibernate.orm.panache.PanacheQuery;
-import io.quarkus.test.InjectMock;
-import io.quarkus.test.junit.QuarkusTest;
-import jakarta.inject.Inject;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -39,7 +36,7 @@ public class ClienteServiceTest {
     @Test
     void deveRetornarClientePorId() throws NaoEncontradoException{
         Cliente cliente = getMockClientePerfilConservadorValido();
-        Integer id = 1;
+        Integer id = cliente.getId();
         Mockito.when(repository.findByIdOptional(Long.valueOf(id))).thenReturn(Optional.of(cliente));
 
         ClienteResponse resultado = service.buscarPorID(id);

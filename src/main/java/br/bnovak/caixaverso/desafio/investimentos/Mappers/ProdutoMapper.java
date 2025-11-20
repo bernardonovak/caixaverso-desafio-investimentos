@@ -22,7 +22,7 @@ public interface ProdutoMapper {
     }
 
     default String map(Risco risco) {
-        return risco != null ? risco.getRisco() : null;
+        return risco != null ? risco.getNome() : null;
     }
 
 }

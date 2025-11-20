@@ -20,9 +20,6 @@ public class ProdutoService {
     @Inject
     ProdutoRepository produtoRepository;
 
-//    @Inject
-//    SimulacaoService simulacaoService;
-
     @Inject
     ProdutoMapper mapper;
 
@@ -37,18 +34,23 @@ public class ProdutoService {
     }
 
     public Risco calcularRiscoPorPerfil(Perfil perfil) throws NaoEncontradoException {
+        if(perfil == null){
+            throw new NaoEncontradoException("Perfil Inválido!");
+        }
         switch (perfil){
             case Perfil.CONSERVADOR -> {
                 return Risco.BAIXO;
             }
             case Perfil.MODERADO -> {
-                return Risco.MODERADO;
+                return Risco.MEDIO;
             }
             case Perfil.AGRESSIVO -> {
                 return Risco.ALTO;
             }
+            default -> {
+                throw new NaoEncontradoException("Perfil Inválido!");
+            }
         }
-        throw new NaoEncontradoException("Perfil Inválido!");
     }
 
     public ProdutoResponse buscarProdutoAdequado(TipoProduto tipoProduto, Risco risco) throws NaoEncontradoException{
@@ -57,9 +59,11 @@ public class ProdutoService {
     }
 
     public List<ProdutoResponse> recomendarProdutos(String strPerfil) throws NaoEncontradoException{
-        //Procura perfil pelo nome
         Perfil perfil = Perfil.buscarPorPerfil(strPerfil);
         List<ProdutoResponse> produtos = buscarTodos();
+        if(produtos.isEmpty()){
+            throw new NaoEncontradoException("Nenhum produto recomendado no momento para o perfil.");
+        }
 
         Comparator<ProdutoResponse> porRentabilidadeDesc = Comparator.comparing(ProdutoResponse::getRentabilidade).reversed();
         switch (perfil){

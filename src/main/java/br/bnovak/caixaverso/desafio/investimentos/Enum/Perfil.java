@@ -34,6 +34,9 @@ public enum Perfil {
     }
 
     public static Perfil buscarPorPerfil(String perfil) throws NaoEncontradoException {
+        if(perfil == null){
+            throw new NaoEncontradoException("Perfil Inválido!");
+        }
         return Arrays.stream(Perfil.values())
                 .filter(r -> r.getPerfil().equalsIgnoreCase(perfil))
                 .findFirst()
