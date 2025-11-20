@@ -27,6 +27,14 @@ public class LogServico {
     public LogServico() {
     }
 
+    public LogServico(Long id, String servico, Long tempoRespostaMs, Instant dataHora, String path) {
+        this.id = id;
+        this.servico = servico;
+        this.tempoRespostaMs = tempoRespostaMs;
+        this.dataHora = dataHora;
+        this.path = path;
+    }
+
     public Long getId() {
         return id;
     }
