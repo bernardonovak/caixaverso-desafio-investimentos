@@ -46,6 +46,14 @@ public class ProdutoResponse {
     )
     private String risco;
 
+    public ProdutoResponse(Integer id, String nome, String tipo, BigDecimal rentabilidade, String risco) {
+        this.id = id;
+        this.nome = nome;
+        this.tipo = tipo;
+        this.rentabilidade = rentabilidade;
+        this.risco = risco;
+    }
+
     public Integer getId() {
         return id;
     }

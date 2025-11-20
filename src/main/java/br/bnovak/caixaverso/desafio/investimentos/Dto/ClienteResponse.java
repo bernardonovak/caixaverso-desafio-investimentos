@@ -38,6 +38,14 @@ public class ClienteResponse {
     )
     private String descricao;
 
+
+    public ClienteResponse(Integer id, String perfil, Integer pontuacao, String descricao) {
+        this.id = id;
+        this.perfil = perfil;
+        this.pontuacao = pontuacao;
+        this.descricao = descricao;
+    }
+
     public Integer getId() {
         return id;
     }
