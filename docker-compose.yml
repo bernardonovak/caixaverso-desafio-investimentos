@@ -1,0 +1,42 @@
+version: '3.9'
+
+services:
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: investimentos-sqlserver
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "teSt$123"
+      MSSQL_DATABASE: "investimentos"
+    networks:
+      - investimentos-net
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+
+
+  api:
+    image: eclipse-temurin:21-jdk
+    container_name: investimentos-api
+    depends_on:
+      - sqlserver
+    working_dir: /app
+    volumes:
+      - ./target/quarkus-app:/app
+    command: ["sh", "-c", "sleep 10 && java -jar quarkus-run.jar -Dquarkus.profile=dev"]
+    ports:
+      - "8080:8080"
+    environment:
+      QUARKUS_DATASOURCE_JDBC_URL: jdbc:sqlserver://sqlserver:1433;databaseName=investimentos;encrypt=true;trustServerCertificate=true
+      QUARKUS_DATASOURCE_USERNAME: sa
+      QUARKUS_DATASOURCE_PASSWORD: teSt$123
+    networks:
+      - investimentos-net
+
+networks:
+  investimentos-net:
+
+volumes:
+  sqlserver-data:
