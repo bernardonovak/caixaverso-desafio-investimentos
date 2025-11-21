@@ -10,26 +10,26 @@ import java.math.BigDecimal;
         name = "resultadoSimulacao",
         type = SchemaType.OBJECT
 )
-public class ResultadoSimulacaoResponse {
+public final class ResultadoSimulacaoResponse {
 
     @Schema(
             description = "Valor final após prazo do investimento",
             implementation = BigDecimal.class
     )
-    private BigDecimal valorFinal;
+    private final BigDecimal valorFinal;
 
     @Schema(
             description = "Renatabilidade efetiva",
             implementation = BigDecimal.class
     )
-    private BigDecimal rentabilidadeEfetiva;
+    private final BigDecimal rentabilidadeEfetiva;
 
     @Schema(
             description = "Prazo em meses do investimento",
             implementation = Integer.class,
             type = SchemaType.INTEGER
     )
-    private Integer prazoMeses;
+    private final Integer prazoMeses;
 
     public ResultadoSimulacaoResponse(BigDecimal valorFinal, BigDecimal rentabilidadeEfetiva, Integer prazoMeses) {
         this.valorFinal = valorFinal;
@@ -41,23 +41,12 @@ public class ResultadoSimulacaoResponse {
         return valorFinal;
     }
 
-    public void setValorFinal(BigDecimal valorFinal) {
-        this.valorFinal = valorFinal;
-    }
-
     public BigDecimal getRentabilidadeEfetiva() {
         return rentabilidadeEfetiva;
-    }
-
-    public void setRentabilidadeEfetiva(BigDecimal rentabilidadeEfetiva) {
-        this.rentabilidadeEfetiva = rentabilidadeEfetiva;
     }
 
     public Integer getPrazoMeses() {
         return prazoMeses;
     }
 
-    public void setPrazoMeses(Integer prazoMeses) {
-        this.prazoMeses = prazoMeses;
-    }
 }

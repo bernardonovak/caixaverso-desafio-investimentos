@@ -11,34 +11,34 @@ import java.math.BigDecimal;
         name = "simularInvestimento",
         type = SchemaType.OBJECT
 )
-public class SimularInvestimentoRequest {
+public final class SimularInvestimentoRequest {
 
     @Schema(
             description = "ID do cliente",
             implementation = Integer.class,
             type = SchemaType.INTEGER
     )
-    private Integer clienteId;
+    private final Integer clienteId;
 
     @Schema(
             description = "Valor inicial de investimento",
             implementation = BigDecimal.class
     )
-    private BigDecimal valor;
+    private final BigDecimal valor;
 
     @Schema(
             description = "Prazo em meses que o investimento ficará rendendo",
             implementation = Integer.class,
             type = SchemaType.INTEGER
     )
-    private Integer prazoMeses;
+    private final Integer prazoMeses;
 
     @Schema(
             description = "Tipo do investimento",
             implementation = TipoProduto.class,
             type = SchemaType.STRING
     )
-    private TipoProduto tipoProduto;
+    private final TipoProduto tipoProduto;
 
     public SimularInvestimentoRequest(Integer clienteId, BigDecimal valor, Integer prazoMeses, TipoProduto tipoProduto) {
         this.clienteId = clienteId;
@@ -51,31 +51,15 @@ public class SimularInvestimentoRequest {
         return clienteId;
     }
 
-    public void setClienteId(Integer clienteId) {
-        this.clienteId = clienteId;
-    }
-
     public BigDecimal getValor() {
         return valor;
-    }
-
-    public void setValor(BigDecimal valor) {
-        this.valor = valor;
     }
 
     public Integer getPrazoMeses() {
         return prazoMeses;
     }
 
-    public void setPrazoMeses(Integer prazoMeses) {
-        this.prazoMeses = prazoMeses;
-    }
-
     public TipoProduto getTipoProduto() {
         return tipoProduto;
-    }
-
-    public void setTipoProduto(TipoProduto tipoProduto) {
-        this.tipoProduto = tipoProduto;
     }
 }

@@ -8,35 +8,35 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
         name = "clientePerfilResponse",
         type = SchemaType.OBJECT
 )
-public class ClienteResponse {
+public final class ClienteResponse {
 
     @Schema(
             description = "ID do cliente",
             implementation = Integer.class,
             type = SchemaType.INTEGER
     )
-    private Integer id;
+    private final Integer id;
 
     @Schema(
             description = "Perfil",
             implementation = String.class,
             type = SchemaType.STRING
     )
-    private String perfil;
+    private final String perfil;
 
     @Schema(
             description = "Pontuação",
             implementation = Integer.class,
             type = SchemaType.INTEGER
     )
-    private Integer pontuacao;
+    private final Integer pontuacao;
 
     @Schema(
             description = "Descrição do Perfil",
             implementation = String.class,
             type = SchemaType.STRING
     )
-    private String descricao;
+    private final String descricao;
 
 
     public ClienteResponse(Integer id, String perfil, Integer pontuacao, String descricao) {
@@ -50,31 +50,15 @@ public class ClienteResponse {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getPerfil() {
         return perfil;
-    }
-
-    public void setPerfil(String perfil) {
-        this.perfil = perfil;
     }
 
     public Integer getPontuacao() {
         return pontuacao;
     }
 
-    public void setPontuacao(Integer pontuacao) {
-        this.pontuacao = pontuacao;
-    }
-
     public String getDescricao() {
         return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
     }
 }

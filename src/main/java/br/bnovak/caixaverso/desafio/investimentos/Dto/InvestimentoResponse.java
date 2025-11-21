@@ -12,43 +12,40 @@ import java.time.LocalDate;
         name = "investimentosResponse",
         type = SchemaType.OBJECT
 )
-public class InvestimentoResponse {
+public final class InvestimentoResponse {
 
     @Schema(
             description = "ID do investimento",
             implementation = Integer.class,
             type = SchemaType.INTEGER
     )
-    private Integer id;
+    private final Integer id;
 
     @Schema(
             description = "Tipo do Investimento",
             implementation = String.class,
             type = SchemaType.STRING
     )
-    private String tipo;
+    private final String tipo;
 
     @Schema(
             description = "Valor atual do investimento",
             implementation = BigDecimal.class
     )
-    private BigDecimal valor;
+    private final BigDecimal valor;
 
     @Schema(
             description = "Renatabilidade efetiva",
             implementation = BigDecimal.class
     )
-    private BigDecimal rentabilidade;
+    private final BigDecimal rentabilidade;
 
     @Schema(
             description = "Data e hora do investimento",
             implementation = Instant.class,
             type = SchemaType.STRING
     )
-    private LocalDate data;
-
-    public InvestimentoResponse() {
-    }
+    private final LocalDate data;
 
     public InvestimentoResponse(Integer id, String tipo, BigDecimal valor, BigDecimal rentabilidade, LocalDate data) {
         this.id = id;
@@ -62,39 +59,19 @@ public class InvestimentoResponse {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getTipo() {
         return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
 
     public BigDecimal getValor() {
         return valor;
     }
 
-    public void setValor(BigDecimal valor) {
-        this.valor = valor;
-    }
-
     public BigDecimal getRentabilidade() {
         return rentabilidade;
     }
 
-    public void setRentabilidade(BigDecimal rentabilidade) {
-        this.rentabilidade = rentabilidade;
-    }
-
     public LocalDate getData() {
         return data;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
     }
 }

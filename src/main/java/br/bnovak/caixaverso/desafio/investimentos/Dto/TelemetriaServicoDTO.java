@@ -8,31 +8,28 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
         name = "telemetriaServicoDTO",
         type = SchemaType.OBJECT
 )
-public class TelemetriaServicoDTO {
+public final class TelemetriaServicoDTO {
 
     @Schema(
             description = "Nome do endpoint chamado",
             implementation = String.class,
             type = SchemaType.STRING
     )
-    private String nome;
+    private final String nome;
 
     @Schema(
             description = "Quantidade de chamdas realizadas",
             implementation = Long.class,
             type = SchemaType.INTEGER
     )
-    private Long quantidadeChamadas;
+    private final Long quantidadeChamadas;
 
     @Schema(
             description = "Tempo média de resposta",
             implementation = Double.class,
             type = SchemaType.NUMBER
     )
-    private Double mediaTempoRespostaMs;
-
-    public TelemetriaServicoDTO() {
-    }
+    private final Double mediaTempoRespostaMs;
 
     public TelemetriaServicoDTO(String nome, Long quantidadeChamadas, Double mediaTempoRespostaMs) {
         this.nome = nome;
@@ -44,23 +41,11 @@ public class TelemetriaServicoDTO {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public Long getQuantidadeChamadas() {
         return quantidadeChamadas;
     }
 
-    public void setQuantidadeChamadas(Long quantidadeChamadas) {
-        this.quantidadeChamadas = quantidadeChamadas;
-    }
-
     public Double getMediaTempoRespostaMs() {
         return mediaTempoRespostaMs;
-    }
-
-    public void setMediaTempoRespostaMs(Double mediaTempoRespostaMs) {
-        this.mediaTempoRespostaMs = mediaTempoRespostaMs;
     }
 }

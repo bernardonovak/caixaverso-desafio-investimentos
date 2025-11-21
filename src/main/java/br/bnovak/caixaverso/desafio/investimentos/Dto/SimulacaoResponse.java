@@ -11,112 +11,91 @@ import java.time.Instant;
         name = "SimulacaoResponse",
         type = SchemaType.OBJECT
 )
-public class SimulacaoResponse {
+public final class SimulacaoResponse {
 
     @Schema(
             description = "ID da Simulação",
             implementation = Integer.class,
             type = SchemaType.INTEGER
     )
-    private Integer id;
+    private final Integer id;
 
     @Schema(
             description = "ID do cliente",
             implementation = Integer.class,
             type = SchemaType.INTEGER
     )
-    private Integer clienteId;
+    private final Integer clienteId;
 
     @Schema(
             description = "Nome do produto",
             implementation = String.class,
             type = SchemaType.STRING
     )
-    private String produto;
+    private final String produto;
 
     @Schema(
             description = "Valor inicial de investimento",
             implementation = BigDecimal.class
     )
-    private BigDecimal valorInvestido;
+    private final BigDecimal valorInvestido;
 
     @Schema(
             description = "Valor final após prazo do investimento",
             implementation = BigDecimal.class
     )
-    private BigDecimal valorFinal;
+    private final BigDecimal valorFinal;
 
     @Schema(
             description = "Prazo em meses do investimento",
             implementation = Integer.class,
             type = SchemaType.INTEGER
     )
-    private Integer prazoMeses;
+    private final Integer prazoMeses;
 
     @Schema(
             description = "Data e hora da simulação de investimento",
             implementation = Instant.class,
             type = SchemaType.STRING
     )
-    private Instant dataSimulacao;
+    private final Instant dataSimulacao;
 
 
-    public SimulacaoResponse() {
+    public SimulacaoResponse(Integer id, Integer clienteId, String produto, BigDecimal valorInvestido, BigDecimal valorFinal, Integer prazoMeses, Instant dataSimulacao) {
+        this.id = id;
+        this.clienteId = clienteId;
+        this.produto = produto;
+        this.valorInvestido = valorInvestido;
+        this.valorFinal = valorFinal;
+        this.prazoMeses = prazoMeses;
+        this.dataSimulacao = dataSimulacao;
     }
 
     public Integer getId() {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public Integer getClienteId() {
         return clienteId;
-    }
-
-    public void setClienteId(Integer clienteId) {
-        this.clienteId = clienteId;
     }
 
     public String getProduto() {
         return produto;
     }
 
-    public void setProduto(String produto) {
-        this.produto = produto;
-    }
-
     public BigDecimal getValorInvestido() {
         return valorInvestido;
-    }
-
-    public void setValorInvestido(BigDecimal valorInvestido) {
-        this.valorInvestido = valorInvestido;
     }
 
     public BigDecimal getValorFinal() {
         return valorFinal;
     }
 
-    public void setValorFinal(BigDecimal valorFinal) {
-        this.valorFinal = valorFinal;
-    }
-
     public Integer getPrazoMeses() {
         return prazoMeses;
     }
 
-    public void setPrazoMeses(Integer prazoMeses) {
-        this.prazoMeses = prazoMeses;
-    }
-
     public Instant getDataSimulacao() {
         return dataSimulacao;
-    }
-
-    public void setDataSimulacao(Instant dataSimulacao) {
-        this.dataSimulacao = dataSimulacao;
     }
 }

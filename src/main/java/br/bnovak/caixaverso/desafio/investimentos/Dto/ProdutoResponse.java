@@ -10,28 +10,28 @@ import java.math.BigDecimal;
         name = "produtoResponse",
         type = SchemaType.OBJECT
 )
-public class ProdutoResponse {
+public final class ProdutoResponse {
 
     @Schema(
             description = "ID do produto",
             implementation = Integer.class,
             type = SchemaType.INTEGER
     )
-    private Integer id;
+    private final Integer id;
 
     @Schema(
             description = "Nome do produto",
             implementation = String.class,
             type = SchemaType.STRING
     )
-    private String nome;
+    private final String nome;
 
     @Schema(
             description = "Tipo do Investimento",
             implementation = String.class,
             type = SchemaType.STRING
     )
-    private String tipo;
+    private final String tipo;
 
     @Schema(
             description = "Renatabilidade efetiva",
@@ -58,32 +58,16 @@ public class ProdutoResponse {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
     public BigDecimal getRentabilidade() {
         return rentabilidade;
-    }
-
-    public void setRentabilidade(BigDecimal rentabilidade) {
-        this.rentabilidade = rentabilidade;
     }
 
     public String getRisco() {

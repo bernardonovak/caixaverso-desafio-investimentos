@@ -10,21 +10,21 @@ import java.time.Instant;
         name = "resultadoSimulacaoResponse",
         type = SchemaType.OBJECT
 )
-public class SimularInvestimentoResponse {
+public final class SimularInvestimentoResponse {
 
     @Schema(
             description = "Objeto do Produto validado",
             implementation = ProdutoResponse.class,
             type = SchemaType.OBJECT
     )
-    private ProdutoResponse produtoValidado;
+    private final ProdutoResponse produtoValidado;
 
     @Schema(
             description = "Objeto do Resultado da simulação",
             implementation = ResultadoSimulacaoResponse.class,
             type = SchemaType.OBJECT
     )
-    private ResultadoSimulacaoResponse resultadoSimulacao;
+    private final ResultadoSimulacaoResponse resultadoSimulacao;
 
     @Schema(
             description = "Data e hora da simulação de investimento",
@@ -43,23 +43,11 @@ public class SimularInvestimentoResponse {
         return produtoValidado;
     }
 
-    public void setProdutoValidado(ProdutoResponse produtoValidado) {
-        this.produtoValidado = produtoValidado;
-    }
-
     public ResultadoSimulacaoResponse getResultadoSimulacao() {
         return resultadoSimulacao;
     }
 
-    public void setResultadoSimulacao(ResultadoSimulacaoResponse resultadoSimulacao) {
-        this.resultadoSimulacao = resultadoSimulacao;
-    }
-
     public Instant getDataSimulacao() {
         return dataSimulacao;
-    }
-
-    public void setDataSimulacao(Instant dataSimulacao) {
-        this.dataSimulacao = dataSimulacao;
     }
 }

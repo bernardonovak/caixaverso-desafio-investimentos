@@ -11,34 +11,34 @@ import java.time.LocalDate;
         name = "SimulacaoPorProdutoDia",
         type = SchemaType.OBJECT
 )
-public class SimulacaoPorProdutoDiaDTO {
+public final class SimulacaoPorProdutoDiaDTO {
 
     @Schema(
             description = "Nome do produto",
             implementation = String.class,
             type = SchemaType.STRING
     )
-    private String produto;
+    private final String produto;
 
     @Schema(
             description = "Data da simulação de investimento",
             implementation = LocalDate.class,
             type = SchemaType.STRING
     )
-    private LocalDate data;
+    private final LocalDate data;
 
     @Schema(
             description = "Quantidade de simulações do Produto por dia",
             implementation = Integer.class,
             type = SchemaType.INTEGER
     )
-    private Integer quantidadeSimulacoes;
+    private final Integer quantidadeSimulacoes;
 
     @Schema(
             description = "Média do valor Final após investimento",
             implementation = BigDecimal.class
     )
-    private BigDecimal mediaValorFinal;
+    private final BigDecimal mediaValorFinal;
 
     public SimulacaoPorProdutoDiaDTO(String produto, LocalDate data, Integer quantidadeSimulacoes, BigDecimal mediaValorFinal) {
         this.produto = produto;
@@ -51,31 +51,15 @@ public class SimulacaoPorProdutoDiaDTO {
         return produto;
     }
 
-    public void setProduto(String produto) {
-        this.produto = produto;
-    }
-
     public LocalDate getData() {
         return data;
-    }
-
-    public void setData(LocalDate data) {
-        this.data = data;
     }
 
     public Integer getQuantidadeSimulacoes() {
         return quantidadeSimulacoes;
     }
 
-    public void setQuantidadeSimulacoes(Integer quantidadeSimulacoes) {
-        this.quantidadeSimulacoes = quantidadeSimulacoes;
-    }
-
     public BigDecimal getMediaValorFinal() {
         return mediaValorFinal;
-    }
-
-    public void setMediaValorFinal(BigDecimal mediaValorFinal) {
-        this.mediaValorFinal = mediaValorFinal;
     }
 }

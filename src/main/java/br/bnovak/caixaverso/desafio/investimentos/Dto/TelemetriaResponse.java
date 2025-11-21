@@ -37,12 +37,6 @@ public class TelemetriaResponse {
     public TelemetriaResponse() {
     }
 
-    public TelemetriaResponse(List<TelemetriaServicoDTO> servicos, LocalDate inicio, LocalDate fim) {
-        this.servicos = servicos;
-        this.inicio = inicio;
-        this.fim = fim;
-    }
-
     public List<TelemetriaServicoDTO> getServicos() {
         return servicos;
     }
