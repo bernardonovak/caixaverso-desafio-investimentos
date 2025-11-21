@@ -9,7 +9,6 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 
 import java.time.Instant;
-import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -48,8 +47,8 @@ public class TelemetriaService {
 
         TelemetriaResponse telemetriaResponse = new TelemetriaResponse();
         telemetriaResponse.setServicos(resumoServicos);
-        telemetriaResponse.setInicio(inicio.map(Utils::ConverteInstantParaData).orElse(null));
-        telemetriaResponse.setFim(fim.map(Utils::ConverteInstantParaData).orElse(null));
+        telemetriaResponse.setInicio(inicio.map(Utils::converteInstantParaData).orElse(null));
+        telemetriaResponse.setFim(fim.map(Utils::converteInstantParaData).orElse(null));
         return telemetriaResponse;
     }
 }

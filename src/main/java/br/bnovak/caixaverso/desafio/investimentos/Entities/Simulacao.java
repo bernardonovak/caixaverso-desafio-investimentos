@@ -44,18 +44,8 @@ public class Simulacao {
     }
 
     public Simulacao(Cliente cliente, Produto produto, BigDecimal valorInvestido, BigDecimal valorFinal, Integer prazoMeses, Instant dataSimulacao) {
-        this.cliente = cliente;
-        this.produto = produto;
-        this.valorInvestido = valorInvestido;
-        this.valorFinal = valorFinal;
-        this.prazoMeses = prazoMeses;
-        this.dataSimulacao = dataSimulacao;
-    }
-
-    public Simulacao(Integer id, Cliente cliente, Produto produto, BigDecimal valorInvestido, BigDecimal valorFinal, Integer prazoMeses, Instant dataSimulacao) {
-        this.id = id;
-        this.cliente = cliente;
-        this.produto = produto;
+        this.cliente = criaCopia(cliente);
+        this.produto = criaCopia(produto);
         this.valorInvestido = valorInvestido;
         this.valorFinal = valorFinal;
         this.prazoMeses = prazoMeses;
@@ -71,19 +61,19 @@ public class Simulacao {
     }
 
     public Cliente getCliente() {
-        return cliente;
+        return criaCopia(cliente);
     }
 
     public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+        this.cliente = criaCopia(cliente);
     }
 
     public Produto getProduto() {
-        return produto;
+        return criaCopia(produto);
     }
 
     public void setProduto(Produto produto) {
-        this.produto = produto;
+        this.produto = criaCopia(produto);
     }
 
     public BigDecimal getValorInvestido() {
@@ -116,5 +106,13 @@ public class Simulacao {
 
     public void setDataSimulacao(Instant dataSimulacao) {
         this.dataSimulacao = dataSimulacao;
+    }
+
+    private Cliente criaCopia(Cliente cliente){
+        return cliente != null ? new Cliente(cliente) : null;
+    }
+
+    private Produto criaCopia(Produto produto){
+        return produto != null ? new Produto(produto) : null;
     }
 }

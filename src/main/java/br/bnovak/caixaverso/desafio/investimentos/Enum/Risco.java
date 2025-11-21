@@ -8,7 +8,7 @@ public enum Risco {
     MEDIO("Médio"),
     ALTO("Alto");
 
-    private final String nome;
+    private String nome;
 
     Risco(String nome) {
         this.nome = nome;

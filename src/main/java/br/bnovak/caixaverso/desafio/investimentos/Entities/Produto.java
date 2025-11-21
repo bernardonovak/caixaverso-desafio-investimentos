@@ -37,13 +37,6 @@ public class Produto {
         this.id = id;
     }
 
-    public Produto(String nome, TipoProduto tipoProduto, BigDecimal rentabilidade, Risco risco) {
-        this.nome = nome;
-        this.tipoProduto = tipoProduto;
-        this.rentabilidade = rentabilidade;
-        this.risco = risco;
-    }
-
     public Produto(Integer id, String nome, TipoProduto tipoProduto, BigDecimal rentabilidade, Risco risco) {
         this.id = id;
         this.nome = nome;
@@ -52,13 +45,21 @@ public class Produto {
         this.risco = risco;
     }
 
-    public Produto(Integer id, String nome, TipoProduto tipoProduto, BigDecimal rentabilidade, Risco risco, List<Simulacao> simulacoes) {
-        this.id = id;
+    public Produto(String nome, TipoProduto tipoProduto, BigDecimal rentabilidade, Risco risco) {
         this.nome = nome;
         this.tipoProduto = tipoProduto;
         this.rentabilidade = rentabilidade;
         this.risco = risco;
-        this.simulacoes = simulacoes;
+    }
+
+    public Produto(Produto original) {
+        if(original != null){
+            this.id = original.id;
+            this.nome = original.nome;
+            this.tipoProduto = original.tipoProduto;
+            this.rentabilidade = original.rentabilidade;
+            this.risco = original.risco;
+        }
     }
 
     public Integer getId() {
@@ -99,13 +100,5 @@ public class Produto {
 
     public void setRisco(Risco risco) {
         this.risco = risco;
-    }
-
-    public List<Simulacao> getSimulacoes() {
-        return simulacoes;
-    }
-
-    public void setSimulacoes(List<Simulacao> simulacoes) {
-        this.simulacoes = simulacoes;
     }
 }

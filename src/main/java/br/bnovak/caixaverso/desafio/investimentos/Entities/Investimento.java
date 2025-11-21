@@ -36,16 +36,9 @@ public class Investimento {
     public Investimento() {
     }
 
-    public Investimento(BigDecimal valorInvestido, BigDecimal valorAtual, Integer prazoMeses, Instant dataInvestimento) {
-        this.valorInvestido = valorInvestido;
-        this.valorAtual = valorAtual;
-        this.prazoMeses = prazoMeses;
-        this.dataInvestimento = dataInvestimento;
-    }
-
     public Investimento(Cliente cliente, Produto produto, BigDecimal valorInvestido, BigDecimal valorAtual, Integer prazoMeses, Instant dataInvestimento) {
-        this.cliente = cliente;
-        this.produto = produto;
+        this.cliente = criaCopia(cliente);
+        this.produto = criaCopia(produto);
         this.valorInvestido = valorInvestido;
         this.valorAtual = valorAtual;
         this.prazoMeses = prazoMeses;
@@ -54,8 +47,8 @@ public class Investimento {
 
     public Investimento(Integer id, Cliente cliente, Produto produto, BigDecimal valorInvestido, BigDecimal valorAtual, Integer prazoMeses, Instant dataInvestimento) {
         this.id = id;
-        this.cliente = cliente;
-        this.produto = produto;
+        this.cliente = criaCopia(cliente);
+        this.produto = criaCopia(produto);
         this.valorInvestido = valorInvestido;
         this.valorAtual = valorAtual;
         this.prazoMeses = prazoMeses;
@@ -71,19 +64,19 @@ public class Investimento {
     }
 
     public Cliente getCliente() {
-        return cliente;
+        return criaCopia(cliente);
     }
 
     public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+        this.cliente = criaCopia(cliente);
     }
 
     public Produto getProduto() {
-        return produto;
+        return criaCopia(produto);
     }
 
     public void setProduto(Produto produto) {
-        this.produto = produto;
+        this.produto = criaCopia(produto);
     }
 
     public BigDecimal getValorInvestido() {
@@ -116,5 +109,13 @@ public class Investimento {
 
     public void setDataInvestimento(Instant dataInvestimento) {
         this.dataInvestimento = dataInvestimento;
+    }
+
+    private Cliente criaCopia(Cliente cliente){
+        return cliente != null ? new Cliente(cliente) : null;
+    }
+
+    private Produto criaCopia(Produto produto){
+        return produto != null ? new Produto(produto) : null;
     }
 }

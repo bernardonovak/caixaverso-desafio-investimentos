@@ -1,7 +1,6 @@
 package br.bnovak.caixaverso.desafio.investimentos.Entities;
 
 import br.bnovak.caixaverso.desafio.investimentos.Enum.Perfil;
-import br.bnovak.caixaverso.desafio.investimentos.Enum.Risco;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -42,11 +41,12 @@ public class Cliente {
         this.pontuacao = pontuacao;
     }
 
-    public Cliente(Integer id, Perfil perfil, Integer pontuacao, List<Simulacao> simulacoes) {
-        this.id = id;
-        this.perfil = perfil;
-        this.pontuacao = pontuacao;
-        this.simulacoes = simulacoes;
+    public Cliente(Cliente original) {
+        if(original != null){
+            this.id = original.id;
+            this.perfil = original.perfil;
+            this.pontuacao = original.pontuacao;
+        }
     }
 
     public Integer getId() {

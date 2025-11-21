@@ -1,6 +1,5 @@
 package br.bnovak.caixaverso.desafio.investimentos.Resources.Interfaces;
 
-import br.bnovak.caixaverso.desafio.investimentos.Dto.ProdutoResponse;
 import br.bnovak.caixaverso.desafio.investimentos.Dto.TelemetriaResponse;
 import io.quarkus.security.Authenticated;
 import jakarta.ws.rs.*;

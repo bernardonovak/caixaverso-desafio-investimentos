@@ -34,17 +34,17 @@ public final class SimularInvestimentoResponse {
     private Instant dataSimulacao;
 
     public SimularInvestimentoResponse(ProdutoResponse produtoValidado, ResultadoSimulacaoResponse resultadoSimulacao) {
-        this.produtoValidado = produtoValidado;
-        this.resultadoSimulacao = resultadoSimulacao;
+        this.produtoValidado = produtoValidado == null ? null : new ProdutoResponse(produtoValidado);
+        this.resultadoSimulacao = resultadoSimulacao == null ? null : new ResultadoSimulacaoResponse(resultadoSimulacao);
         this.dataSimulacao = Instant.now();
     }
 
     public ProdutoResponse getProdutoValidado() {
-        return produtoValidado;
+        return produtoValidado == null ? null : new ProdutoResponse(produtoValidado);
     }
 
     public ResultadoSimulacaoResponse getResultadoSimulacao() {
-        return resultadoSimulacao;
+        return resultadoSimulacao == null ? null : new ResultadoSimulacaoResponse(resultadoSimulacao);
     }
 
     public Instant getDataSimulacao() {

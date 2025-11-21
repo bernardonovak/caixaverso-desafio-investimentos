@@ -38,8 +38,8 @@ public class TelemetriaServiceTest {
 
 
         Assertions.assertNotNull(resultado);
-        Assertions.assertEquals(Utils.ConverteInstantParaData(antes), resultado.getInicio());
-        Assertions.assertEquals(Utils.ConverteInstantParaData(agora), resultado.getFim());
+        Assertions.assertEquals(Utils.converteInstantParaData(antes), resultado.getInicio());
+        Assertions.assertEquals(Utils.converteInstantParaData(agora), resultado.getFim());
         Assertions.assertEquals(2, resultado.getServicos().size());
 
         TelemetriaServicoDTO simulacoes = resultado.getServicos().stream()

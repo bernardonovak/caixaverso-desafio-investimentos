@@ -10,28 +10,28 @@ import java.math.BigDecimal;
         name = "produtoResponse",
         type = SchemaType.OBJECT
 )
-public final class ProdutoResponse {
+public class ProdutoResponse {
 
     @Schema(
             description = "ID do produto",
             implementation = Integer.class,
             type = SchemaType.INTEGER
     )
-    private final Integer id;
+    private Integer id;
 
     @Schema(
             description = "Nome do produto",
             implementation = String.class,
             type = SchemaType.STRING
     )
-    private final String nome;
+    private String nome;
 
     @Schema(
             description = "Tipo do Investimento",
             implementation = String.class,
             type = SchemaType.STRING
     )
-    private final String tipo;
+    private String tipo;
 
     @Schema(
             description = "Renatabilidade efetiva",
@@ -46,12 +46,25 @@ public final class ProdutoResponse {
     )
     private String risco;
 
+    public ProdutoResponse() {
+    }
+
     public ProdutoResponse(Integer id, String nome, String tipo, BigDecimal rentabilidade, String risco) {
         this.id = id;
         this.nome = nome;
         this.tipo = tipo;
         this.rentabilidade = rentabilidade;
         this.risco = risco;
+    }
+
+    public ProdutoResponse(ProdutoResponse original) {
+        if (original != null) {
+            this.id = original.id;
+            this.nome = original.nome;
+            this.tipo = original.tipo;
+            this.rentabilidade = original.rentabilidade;
+            this.risco = original.risco;
+        }
     }
 
     public Integer getId() {
@@ -76,5 +89,21 @@ public final class ProdutoResponse {
 
     public void setRisco(String risco) {
         this.risco = risco;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setRentabilidade(BigDecimal rentabilidade) {
+        this.rentabilidade = rentabilidade;
     }
 }

@@ -4,6 +4,7 @@ import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Schema(
@@ -38,11 +39,11 @@ public class TelemetriaResponse {
     }
 
     public List<TelemetriaServicoDTO> getServicos() {
-        return servicos;
+        return servicos != null ? List.copyOf(servicos) : List.of();
     }
 
     public void setServicos(List<TelemetriaServicoDTO> servicos) {
-        this.servicos = servicos;
+        this.servicos = servicos != null ? new ArrayList<>(servicos) : null;
     }
 
     public LocalDate getInicio() {

@@ -4,7 +4,6 @@ import br.bnovak.caixaverso.desafio.investimentos.Dto.InvestimentoResponse;
 import br.bnovak.caixaverso.desafio.investimentos.Entities.Investimento;
 import br.bnovak.caixaverso.desafio.investimentos.Entities.Produto;
 import br.bnovak.caixaverso.desafio.investimentos.Utils.Utils;
-import org.hibernate.dialect.function.StringFunction;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -12,8 +11,6 @@ import org.mapstruct.Named;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Mapper(componentModel = "jakarta")
@@ -39,6 +36,6 @@ public interface InvestimentoMapper {
 
     @Named("mapData")
     default LocalDate mapData(Instant dataInvestimento) {
-        return dataInvestimento != null ? Utils.ConverteInstantParaData(dataInvestimento) : null;
+        return dataInvestimento != null ? Utils.converteInstantParaData(dataInvestimento) : null;
     }
 }
